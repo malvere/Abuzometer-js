@@ -170,18 +170,18 @@
         <template #media> <demo-icon /> </template>
       </k-list-input>
     </k-list>
-    <k-block-title>Icon + Input</k-block-title>
+    <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
-      <k-list-input type="text" placeholder="Your name">
+      <k-list-input type="text" placeholder="Цена на СберМаркете">
         <template #media> <demo-icon /> </template>
       </k-list-input>
-      <k-list-input type="password" placeholder="Your password">
+      <k-list-input type="password" placeholder="Баллы на СберМаркете">
         <template #media> <demo-icon /> </template>
       </k-list-input>
-      <k-list-input type="email" placeholder="Your e-mail">
+      <k-list-input type="email" placeholder="Списание баллов">
         <template #media> <demo-icon /> </template>
       </k-list-input>
-      <k-list-input type="url" placeholder="URL">
+      <k-list-input type="url" placeholder="Цена продажи">
         <template #media> <demo-icon /> </template>
       </k-list-input>
     </k-list>
@@ -210,10 +210,18 @@
 </template>
 <script>
 import { ref } from 'vue'
-import { kPage, kNavbar, kNavbarBackLink, kBlockTitle, kList, kListInput } from 'konsta/vue'
+import { kPage, kNavbar, kBlockTitle, kList, kListInput } from 'konsta/vue'
 import DemoIcon from '../components/icons/IconTooling.vue'
 export default {
-  components: { kPage, kNavbar, kNavbarBackLink, kBlockTitle, kList, kListInput, DemoIcon },
+  components: {
+    kPage,
+    kNavbar,
+    // kNavbarBackLink,
+    kBlockTitle,
+    kList,
+    kListInput,
+    DemoIcon
+  },
   setup() {
     const name = ref({ value: '', changed: false })
     const demoValue = ref('')

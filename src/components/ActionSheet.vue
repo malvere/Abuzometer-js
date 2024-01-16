@@ -1,25 +1,21 @@
 <template>
   <k-page>
-    <!-- <k-navbar :title="pageTitle" /> -->
-    <k-block class="space-x-4">
-      <p>""</p>
-    </k-block>
+    <k-navbar title="Abuzomer" />
     <k-block strong inset class="space-y-4">
       <p>
-        Action Sheet is a slide-up pane for presenting the user with a set of alternatives for how
-        to proceed with a given task.
+        Абузомер. Древняя разработка коварного учёного Святосквирта большечленова.
       </p>
     </k-block>
-    <k-block-title>Open Action Sheet</k-block-title>
+    <k-block-title>Панель разумиста</k-block-title>
     <k-block strong inset class="flex space-x-4 rtl:space-x-reverse">
-      <k-button @click="() => (actionsTwoOpened = true)">One group</k-button>
-      <k-button @click="() => (actionsTwoOpened = true)">Two groups</k-button>
+      <k-button @click="() => (actionsTwoOpened = true)">Ядерный удар по пендосам</k-button>
+      <k-button @click="() => (actionsTwoOpened = true)">Не нажимать</k-button>
     </k-block>
     <k-actions :opened="actionsOneOpened" @backdropclick="() => (actionsOneOpened = false)">
       <k-actions-group>
         <k-actions-label>Do something</k-actions-label>
         <k-actions-button bold @click="() => (actionsOneOpened = false)">
-          Button test
+          Button 1
         </k-actions-button>
         <k-actions-button @click="() => (actionsOneOpened = false)"> Button 2 </k-actions-button>
         <k-actions-button @click="() => (actionsOneOpened = false)"> Cancel </k-actions-button>
@@ -28,10 +24,10 @@
     <k-actions :opened="actionsTwoOpened" @backdropclick="() => (actionsTwoOpened = false)">
       <k-actions-group>
         <k-actions-label>Do something</k-actions-label>
-        <k-actions-button bold @click="() => (actionsTwoOpened = false)">
-          Button 1
+        <k-actions-button bold @click="but1()">
+          Калькулятор
         </k-actions-button>
-        <k-actions-button @click="test()"> Button test </k-actions-button>
+        <k-actions-button @click="but2()"> All Forms </k-actions-button>
       </k-actions-group>
       <k-actions-group>
         <k-actions-button @click="() => (actionsTwoOpened = false)"> Cancel </k-actions-button>
@@ -43,7 +39,7 @@
 <script>
 import {
   kPage,
-  //   kNavbar,
+    kNavbar,
   kBlockTitle,
   kBlock,
   kButton,
@@ -53,10 +49,11 @@ import {
   kActionsGroup
 } from 'konsta/vue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 export default {
   components: {
     kPage,
-    // kNavbar,
+    kNavbar,
     kBlockTitle,
     kBlock,
     kButton,
@@ -68,11 +65,19 @@ export default {
   setup() {
     const actionsOneOpened = ref(false)
     const actionsTwoOpened = ref(false)
-    function test() {
+
+    const router = useRouter()
+    function but1() {
+      actionsTwoOpened.value = false
+      router.push({ name: 'calc' })
+    }
+
+    function but2() {
       alert('Hi')
       actionsTwoOpened.value = false
+      router.push({ name: 'about' })
     }
-    return { actionsOneOpened, actionsTwoOpened, test }
+    return { actionsOneOpened, actionsTwoOpened, but1, but2 }
   }
 }
 </script>

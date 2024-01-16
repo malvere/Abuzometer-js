@@ -1,5 +1,5 @@
 <script setup>
-import FormInputs from '@/components/FormInputs.vue'
+import CalcInputs from '@/components/CalcInputs.vue'
 
 const pageTitle = 'Abuzomer'
 </script>
@@ -8,7 +8,7 @@ const pageTitle = 'Abuzomer'
   <k-app theme="ios">
     <k-page>
       <k-navbar :title="pageTitle" />
-      <FormInputs />
+      <CalcInputs />
     </k-page>
   </k-app>
 </template>

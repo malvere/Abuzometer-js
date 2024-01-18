@@ -12,6 +12,7 @@ const sellPrice = ref('105000')
 
 const calcCard = ref(null)
 const ri1 = ref(false)
+const cc = ref(0)
 const openPopup = () => {
   console.log(smmPrice.value)
   if (
@@ -36,14 +37,14 @@ const openPopup = () => {
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
-        :key="ri1"
+        :key="cc"
         label="Цена на СММ"
         type="text"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="() => (ri1 = true)"
+        @blur="cc++"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

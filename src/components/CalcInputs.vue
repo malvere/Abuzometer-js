@@ -6,7 +6,7 @@
     </k-block>
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
-      <k-list-input type="text" placeholder="Цена на СберМаркете">
+      <k-list-input type="text" inputmode="numeric" placeholder="Цена на СберМаркете">
         <template #media> <demo-icon /> </template>
       </k-list-input>
       <k-list-input type="password" placeholder="Баллы на СберМаркете">

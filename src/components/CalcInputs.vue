@@ -47,7 +47,8 @@ const openPopup = () => {
         ref="input1"
         label="Цена на СММ"
         type="text"
-        :readonly="ri1"
+        
+        :disabled="ri1"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"

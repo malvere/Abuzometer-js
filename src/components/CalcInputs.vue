@@ -43,11 +43,12 @@ const openPopup = () => {
         ref="input1"
         label="Цена на СММ"
         type="text"
+        autofocus="true"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="(e) => (e.target.readonly = true)"
+        @blur="(e) => e.target.blur = true"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

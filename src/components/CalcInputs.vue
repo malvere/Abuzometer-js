@@ -12,8 +12,6 @@ const sellPrice = ref('105000')
 
 const calcCard = ref(null)
 const ri1 = ref(false)
-const vif = ref(false)
-// const popupOpened = ref(false)
 const openPopup = () => {
   console.log(smmPrice.value)
   if (
@@ -22,8 +20,6 @@ const openPopup = () => {
     rmBonus.value !== '' &&
     sellPrice.value !== ''
   ) {
-    // popupOpened.value = true
-    vif.value = true
     calcCard.value.popupOpened = true
   } else {
     // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
@@ -43,7 +39,6 @@ const openPopup = () => {
         :key="ri1"
         label="Цена на СММ"
         type="text"
-        :readonly="ri1"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"

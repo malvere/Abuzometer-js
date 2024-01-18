@@ -11,7 +11,7 @@ import {
 } from 'konsta/vue'
 
 const props = defineProps({
-  price: {
+  smmPrice: {
     type: String,
     required: true
   },
@@ -32,11 +32,10 @@ const props = defineProps({
 // Ваш строковый массив
 const discountDataString = "0/0;2000/16000;5000/38000;9000/70000;17000/140000";
 
-const price = props.price; // Измените целевую сумму по вашему запросу
+const price = props.smmPrice;
 const smmBonus = props.smmBonus;
 const rmBonus = props.rmBonus;
 const sellPrice = props.sellPrice;
-
 
 const discountPairs = discountDataString.split(';')
 
@@ -49,7 +48,7 @@ const discountObject = discountPairs.reduce((acc, pair) => {
 
 // Находит ближайшую сумму (не более price), для которой задана скидка
 function findNearestDiscount() {
-  let nearestAmount = -Infinity
+  let nearestAmount = 0
   for (const key in discountObject) {
     const currentAmount = parseInt(key, 10)
     if (currentAmount <= price && currentAmount > nearestAmount) {
@@ -84,7 +83,7 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
             <k-table-cell header class="text-right">Значение</k-table-cell>
           </k-table-row>
         </k-table-head>
-        <k-table-body class="divide-y">
+        <k-table-body>
           <k-table-row>
             <k-table-cell>Цена покупки</k-table-cell>
             <k-table-cell class="text-right">{{ buyPrice }}</k-table-cell>

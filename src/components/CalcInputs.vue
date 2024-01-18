@@ -5,14 +5,16 @@ import { ref } from 'vue'
 import DemoIcon from '../components/icons/IconTooling.vue'
 import CalcCard from './calc/CalcCard.vue'
 
-const smmPrice = ref('145000')
-const smmBonus = ref('45000')
-const rmBonus = ref('30000')
+const smmPrice = ref('')
+const smmBonus = ref('50000')
+const rmBonus = ref('70000')
 const sellPrice = ref('105000')
 const calcCard = ref(null)
+
+const vif = ref(false)
 // const popupOpened = ref(false)
 const openPopup = () => {
-  console.log(smmPrice)
+  console.log(smmPrice.value)
   if (
     smmPrice.value !== '' &&
     smmBonus.value !== '' &&
@@ -20,6 +22,7 @@ const openPopup = () => {
     sellPrice.value !== ''
   ) {
     // popupOpened.value = true
+    vif.value = true
     calcCard.value.popupOpened = true
   } else {
     // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
@@ -36,15 +39,17 @@ const openPopup = () => {
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
+        label="Цена на СММ"
         type="text"
+        placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
-        placeholder="Цена на СберМаркете"
         @change="(e) => (smmPrice = e.target.value)"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>
       <k-list-input
+      label="Бонусы спасибо"
         :value="smmBonus"
         type="text"
         inputmode="numeric"
@@ -54,6 +59,7 @@ const openPopup = () => {
         <template #media> <demo-icon /> </template>
       </k-list-input>
       <k-list-input
+      label="Списание баллов"
         :value="rmBonus"
         type="text"
         inputmode="numeric"
@@ -63,6 +69,7 @@ const openPopup = () => {
         <template #media> <demo-icon /> </template>
       </k-list-input>
       <k-list-input
+      label="Цена продажи"
         :value="sellPrice"
         type="text"
         inputmode="numeric"
@@ -82,7 +89,7 @@ const openPopup = () => {
     <k-block-title>Ниже будут результаты расчётов...</k-block-title>
     <CalcCard
       ref="calcCard"
-      :price="smmPrice"
+      :smm-price="smmPrice"
       :smm-bonus="smmBonus"
       :rm-bonus="rmBonus"
       :sell-price="sellPrice"

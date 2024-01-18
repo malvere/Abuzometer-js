@@ -9,7 +9,9 @@ const smmPrice = ref('')
 const smmBonus = ref('50000')
 const rmBonus = ref('70000')
 const sellPrice = ref('105000')
+
 const calcCard = ref(null)
+const input1 = ref(null)
 
 const vif = ref(false)
 // const popupOpened = ref(false)
@@ -39,19 +41,19 @@ const openPopup = () => {
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
-      ref="ismmPrice"
+        ref="input1"
         label="Цена на СММ"
         type="text"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="(e) => e.target.focus = false"
+        @blur="() => input1.blur()"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>
       <k-list-input
-      label="Бонусы спасибо"
+        label="Бонусы спасибо"
         :value="smmBonus"
         type="text"
         inputmode="numeric"
@@ -61,7 +63,7 @@ const openPopup = () => {
         <template #media> <demo-icon /> </template>
       </k-list-input>
       <k-list-input
-      label="Списание баллов"
+        label="Списание баллов"
         :value="rmBonus"
         type="text"
         inputmode="numeric"
@@ -71,7 +73,7 @@ const openPopup = () => {
         <template #media> <demo-icon /> </template>
       </k-list-input>
       <k-list-input
-      label="Цена продажи"
+        label="Цена продажи"
         :value="sellPrice"
         type="text"
         inputmode="numeric"

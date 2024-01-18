@@ -6,7 +6,8 @@ import {
   kTableHead,
   kTableBody,
   kTableCell,
-  kTableRow
+  kTableRow,
+  kBlock
 } from 'konsta/vue'
 
 const props = defineProps({
@@ -73,8 +74,8 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
 
 <template>
   <k-block-title>Результаты</k-block-title>
-  <div class="grid grid-cols-2">
-    <k-card class="block overflow-x-auto mt-8" :content-wrap="false">
+  <k-block>
+    <k-card class="block overflow-x-auto mt-10" :content-wrap="false">
       <k-table>
         <k-table-head>
           <k-table-row header>
@@ -99,19 +100,6 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
             <k-table-cell>Δ Баллов</k-table-cell>
             <k-table-cell class="text-right">{{ deltaBonus }}</k-table-cell>
           </k-table-row>
-        </k-table-body>
-      </k-table>
-    </k-card>
-
-    <k-card class="block overflow-x-auto mt-8" :content-wrap="false">
-      <k-table>
-        <k-table-head>
-          <k-table-row header>
-            <k-table-cell header>Параметр</k-table-cell>
-            <k-table-cell header class="text-right">Значение</k-table-cell>
-          </k-table-row>
-        </k-table-head>
-        <k-table-body>
           <k-table-row>
             <k-table-cell>GConv</k-table-cell>
             <k-table-cell class="text-right">{{ gConv }}</k-table-cell>
@@ -123,5 +111,5 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
         </k-table-body>
       </k-table>
     </k-card>
-  </div>
+  </k-block>
 </template>

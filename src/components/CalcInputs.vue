@@ -11,6 +11,7 @@ const rmBonus = ref('70000')
 const sellPrice = ref('105000')
 
 const calcCard = ref(null)
+const ri1 = ref(false)
 
 const vif = ref(false)
 // const popupOpened = ref(false)
@@ -43,12 +44,12 @@ const openPopup = () => {
         ref="input1"
         label="Цена на СММ"
         type="text"
-        autofocus="true"
+        :readonly="ri1"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="(e) => e.target.blur()"
+        @blur="() => ri1 = true"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

@@ -50,6 +50,7 @@ const openPopup = () => {
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
         @blur="() => ri1 = true"
+        @focus="() => ri1 = false"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

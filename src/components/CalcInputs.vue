@@ -39,13 +39,14 @@ const openPopup = () => {
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
+      ref="ismmPrice"
         label="Цена на СММ"
         type="text"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="(e)"
+        @blur="(e) => console.log(e.target.focus = false)"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

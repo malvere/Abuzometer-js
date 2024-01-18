@@ -5,13 +5,13 @@ import { ref } from 'vue'
 import DemoIcon from '../components/icons/IconTooling.vue'
 import CalcCard from './calc/CalcCard.vue'
 
-const smmPrice = ref('')
+const smmPrice = ref('145000')
 const smmBonus = ref('50000')
 const rmBonus = ref('70000')
 const sellPrice = ref('105000')
 
 const calcCard = ref(null)
-const input1 = document.getElementById('input1');
+// const input1 = document.getElementById('input1');
 
 const vif = ref(false)
 // const popupOpened = ref(false)
@@ -41,14 +41,14 @@ const openPopup = () => {
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
-        id="input1"
+        ref="input1"
         label="Цена на СММ"
         type="text"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="() => input1.blur()"
+        @blur="() => this.$refs.input1.blur()"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

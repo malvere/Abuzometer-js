@@ -73,8 +73,9 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
 </script>
 
 <template>
+  <k-block></k-block>
   <k-block-title>Результаты</k-block-title>
-  <k-block>
+  <!-- <k-block> -->
     <k-card class="block overflow-x-auto mt-10" :content-wrap="false">
       <k-table>
         <k-table-head>
@@ -83,7 +84,7 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
             <k-table-cell header class="text-right">Значение</k-table-cell>
           </k-table-row>
         </k-table-head>
-        <k-table-body>
+        <k-table-body class="divide-y">
           <k-table-row>
             <k-table-cell>Цена покупки</k-table-cell>
             <k-table-cell class="text-right">{{ buyPrice }}</k-table-cell>
@@ -111,5 +112,5 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
         </k-table-body>
       </k-table>
     </k-card>
-  </k-block>
+  <!-- </k-block> -->
 </template>

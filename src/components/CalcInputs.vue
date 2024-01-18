@@ -40,6 +40,7 @@ const openPopup = () => {
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
+        :key="ri1"
         label="Цена на СММ"
         type="text"
         :readonly="ri1"

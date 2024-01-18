@@ -12,10 +12,6 @@ const sellPrice = ref('105000')
 
 const calcCard = ref(null)
 const ri1 = ref(false)
-const triggerK = () => {
-  ri1.value = true
-  ri1.value = false
-}
 const vif = ref(false)
 // const popupOpened = ref(false)
 const openPopup = () => {
@@ -44,17 +40,15 @@ const openPopup = () => {
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
-        v-on:focus="() => (ri1 = false)"
-        ref="input1"
         label="Цена на СММ"
         type="text"
-        :disabled="ri1"
+        :readonly="ri1"
         placeholder="Цена на СберМаркете"
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="() => (ri1 = true)"
         @focus="() => (ri1 = false)"
+        @blur="() => (ri1 = true)"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

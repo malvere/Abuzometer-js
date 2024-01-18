@@ -12,7 +12,10 @@ const sellPrice = ref('105000')
 
 const calcCard = ref(null)
 const ri1 = ref(false)
-
+const triggerK = () => {
+  ri1.value = true;
+  ri1.value = false;
+}
 const vif = ref(false)
 // const popupOpened = ref(false)
 const openPopup = () => {
@@ -49,8 +52,7 @@ const openPopup = () => {
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @focus="() => (ri1 = false)"
-        @blur="() => (ri1 = true)"
+        @blur="triggerK"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

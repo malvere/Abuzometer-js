@@ -1,15 +1,12 @@
 <script setup>
 // import TheWelcome from '../components/TheWelcome.vue'
 import ActionSheet from '@/components/ActionSheet.vue'
-
-const pageTitle = 'Home'
+import { kNavbar, kApp } from 'konsta/vue'
 </script>
 
 <template>
+  <k-navbar title="КАЛькулятор" />
   <k-app theme="ios">
-    <k-page>
-      <k-navbar :title="pageTitle" />
-      <ActionSheet />
-    </k-page>
+    <ActionSheet />
   </k-app>
 </template>

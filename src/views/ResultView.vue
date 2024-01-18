@@ -1,11 +1,11 @@
 <script setup>
-import CalcInputs from '@/components/CalcInputs.vue'
+import CalcResults from '@/components/calc/CalcResult.vue'
 import { kNavbar, kApp } from 'konsta/vue'
 </script>
 
 <template>
-  <k-navbar title="Абузомер" />
+  <k-navbar title="Results" />
   <k-app theme="ios">
-    <CalcInputs />
+    <CalcResults />
   </k-app>
 </template>

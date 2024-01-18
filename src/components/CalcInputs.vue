@@ -11,7 +11,6 @@ const rmBonus = ref('70000')
 const sellPrice = ref('105000')
 
 const calcCard = ref(null)
-// const input1 = document.getElementById('input1');
 
 const vif = ref(false)
 // const popupOpened = ref(false)
@@ -48,7 +47,7 @@ const openPopup = () => {
         :value="smmPrice"
         inputmode="numeric"
         @change="(e) => (smmPrice = e.target.value)"
-        @blur="() => this.$refs.input1.blur()"
+        @blur="(e) => (e.target.readonly = true)"
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>

@@ -29,16 +29,14 @@ const openPopup = () => {
 
 <template>
   <k-page>
-    <k-block strong inset class="space-y-4">
+    <k-block strong inset class="space-y-4" aria-readonly="true">
       <p>Тут будет инструкция. Или не тут</p>
     </k-block>
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
-        :key="ri1"
         label="Цена на СММ"
         type="text"
-        onfocus="blur();"
         placeholder="Цена на СберМаркете"
         inputmode="numeric"
         :value="smmPrice"

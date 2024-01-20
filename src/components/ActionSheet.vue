@@ -12,19 +12,19 @@ import {
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const actionsOneOpened = ref(false);
-const actionsTwoOpened = ref(false);
+const actionsOneOpened = ref(false)
+const actionsTwoOpened = ref(false)
 
-const router = useRouter();
+const router = useRouter()
 function but1() {
-  actionsTwoOpened.value = false;
-  router.push({ name: 'calc' });
-};
+  actionsTwoOpened.value = false
+  router.push({ name: 'calc' })
+}
 function but2() {
-  alert('Hi');
-  actionsTwoOpened.value = false;
-  router.push({ name: 'about' });
-};
+  alert('Hi')
+  actionsTwoOpened.value = false
+  router.push({ name: 'about' })
+}
 </script>
 
 <template>

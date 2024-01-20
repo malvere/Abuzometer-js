@@ -12,4 +12,3 @@ const pageTitle = 'Abuzomer'
     </k-page>
   </k-app>
 </template>
-

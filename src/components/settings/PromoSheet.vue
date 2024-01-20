@@ -20,7 +20,7 @@ const sheetOpened = ref(false)
 const promoData = ref('')
 
 if (localStorage.getItem('promo')) {
-  promoData.value = (localStorage.getItem('promo'))
+  promoData.value = localStorage.getItem('promo')
 }
 
 const discounts = computed(() => {

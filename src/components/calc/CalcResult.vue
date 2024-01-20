@@ -30,12 +30,12 @@ const props = defineProps({
 })
 
 // Ваш строковый массив
-const discountDataString = "0/0;2000/16000;5000/38000;9000/70000;17000/140000";
+const discountDataString = '0/0;2000/16000;5000/38000;9000/70000;17000/140000'
 
-const price = props.smmPrice;
-const smmBonus = props.smmBonus;
-const rmBonus = props.rmBonus;
-const sellPrice = props.sellPrice;
+const price = props.smmPrice
+const smmBonus = props.smmBonus
+const rmBonus = props.rmBonus
+const sellPrice = props.sellPrice
 
 const discountPairs = discountDataString.split(';')
 
@@ -59,14 +59,14 @@ function findNearestDiscount() {
 }
 
 // Получаем ближайшую скидку для целевой суммы
-const nearestDiscount = findNearestDiscount(price);
+const nearestDiscount = findNearestDiscount(price)
 
-const buyPrice = price - nearestDiscount - rmBonus;
-const recalcBonus = Math.round(smmBonus / price * buyPrice);
-const profit = sellPrice - buyPrice;
-const deltaBonus = recalcBonus - rmBonus;
-const gConv = parseFloat(profit / deltaBonus).toFixed(6);
-const lConv = parseFloat(profit / rmBonus).toFixed(6);
+const buyPrice = price - nearestDiscount - rmBonus
+const recalcBonus = Math.round((smmBonus / price) * buyPrice)
+const profit = sellPrice - buyPrice
+const deltaBonus = recalcBonus - rmBonus
+const gConv = parseFloat(profit / deltaBonus).toFixed(6)
+const lConv = parseFloat(profit / rmBonus).toFixed(6)
 
 // console.log(buyPrice) // Выводит 2000
 </script>
@@ -75,41 +75,41 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6);
   <k-block></k-block>
   <k-block-title>Результаты</k-block-title>
   <!-- <k-block> -->
-    <k-card class="block overflow-x-auto mt-10" :content-wrap="false">
-      <k-table>
-        <k-table-head>
-          <k-table-row header>
-            <k-table-cell header>Параметр</k-table-cell>
-            <k-table-cell header class="text-right">Значение</k-table-cell>
-          </k-table-row>
-        </k-table-head>
-        <k-table-body>
-          <k-table-row>
-            <k-table-cell>Цена покупки</k-table-cell>
-            <k-table-cell class="text-right">{{ buyPrice }}</k-table-cell>
-          </k-table-row>
-          <k-table-row>
-            <k-table-cell>Перерасчёт баллов</k-table-cell>
-            <k-table-cell class="text-right">{{ recalcBonus }}</k-table-cell>
-          </k-table-row>
-          <k-table-row>
-            <k-table-cell>Профит</k-table-cell>
-            <k-table-cell class="text-right">{{ profit }}</k-table-cell>
-          </k-table-row>
-          <k-table-row>
-            <k-table-cell>Δ Баллов</k-table-cell>
-            <k-table-cell class="text-right">{{ deltaBonus }}</k-table-cell>
-          </k-table-row>
-          <k-table-row>
-            <k-table-cell>GConv</k-table-cell>
-            <k-table-cell class="text-right">{{ gConv }}</k-table-cell>
-          </k-table-row>
-          <k-table-row>
-            <k-table-cell>LConv</k-table-cell>
-            <k-table-cell class="text-right">{{ lConv }}</k-table-cell>
-          </k-table-row>
-        </k-table-body>
-      </k-table>
-    </k-card>
+  <k-card class="block overflow-x-auto mt-10" :content-wrap="false">
+    <k-table>
+      <k-table-head>
+        <k-table-row header>
+          <k-table-cell header>Параметр</k-table-cell>
+          <k-table-cell header class="text-right">Значение</k-table-cell>
+        </k-table-row>
+      </k-table-head>
+      <k-table-body>
+        <k-table-row>
+          <k-table-cell>Цена покупки</k-table-cell>
+          <k-table-cell class="text-right">{{ buyPrice }}</k-table-cell>
+        </k-table-row>
+        <k-table-row>
+          <k-table-cell>Перерасчёт баллов</k-table-cell>
+          <k-table-cell class="text-right">{{ recalcBonus }}</k-table-cell>
+        </k-table-row>
+        <k-table-row>
+          <k-table-cell>Профит</k-table-cell>
+          <k-table-cell class="text-right">{{ profit }}</k-table-cell>
+        </k-table-row>
+        <k-table-row>
+          <k-table-cell>Δ Баллов</k-table-cell>
+          <k-table-cell class="text-right">{{ deltaBonus }}</k-table-cell>
+        </k-table-row>
+        <k-table-row>
+          <k-table-cell>GConv</k-table-cell>
+          <k-table-cell class="text-right">{{ gConv }}</k-table-cell>
+        </k-table-row>
+        <k-table-row>
+          <k-table-cell>LConv</k-table-cell>
+          <k-table-cell class="text-right">{{ lConv }}</k-table-cell>
+        </k-table-row>
+      </k-table-body>
+    </k-table>
+  </k-card>
   <!-- </k-block> -->
 </template>

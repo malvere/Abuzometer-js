@@ -1,7 +1,7 @@
 <script setup>
 // import { kApp, kPage, kNavbar, kBlock } from 'konsta/vue';
-import { kApp, kPage } from 'konsta/vue';
-import { RouterView } from 'vue-router';
+import { kApp, kPage } from 'konsta/vue'
+import { RouterView } from 'vue-router'
 
 // const pageTitle = 'Abuzomer';
 </script>

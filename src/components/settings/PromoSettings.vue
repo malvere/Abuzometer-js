@@ -38,7 +38,7 @@ const toggleSwitch = (value) => {
 // Discount parser
 const parseDiscountData = (dataString) => {
   const [discountInfo, promocodeName] = dataString.split('::')
-  
+
   return { discountInfo, promocodeName }
 }
 const parsedData = dData.map(parseDiscountData)
@@ -61,9 +61,10 @@ const parsedData = dData.map(parseDiscountData)
     </k-list>
     <k-block strong inset class="grid grid-cols-2 gap-x-6">
       <k-button large rounded tonal @click="butHome()"> Назад </k-button>
-      <k-button large rounded tonal @click="() => (openSheet(dData[gvalue].discountInfo))"> Детали промокода </k-button>
+      <k-button large rounded tonal @click="() => openSheet(dData[gvalue].discountInfo)">
+        Детали промокода
+      </k-button>
     </k-block>
     <PromoSheet ref="pSheet" />
-    
   </k-page>
 </template>

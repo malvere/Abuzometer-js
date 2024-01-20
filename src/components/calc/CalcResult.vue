@@ -7,8 +7,10 @@ import {
   kTableBody,
   kTableCell,
   kTableRow,
-  kBlock
+  kBlock,
+  kChip
 } from 'konsta/vue'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   smmPrice: {
@@ -28,16 +30,61 @@ const props = defineProps({
     required: true
   }
 })
+const state = {
+  rak: {
+    fillBg: 'bg-red-600',
+    fillText: 'text-white',
+    outlineBorder: 'border-red-500',
+    outlineText: 'text-red-500'
+  },
+  olen: {
+    fillBg: 'bg-green-600',
+    fillText: 'text-white',
+    outlineBorder: 'border-green-500',
+    outlineText: 'text-green-500'
+  },
+  statist: {
+    fillBg: 'bg-blue-500',
+    fillText: 'text-white',
+    outlineBorder: 'border-blue-500',
+    outlineText: 'text-blue-500'
+  },
+  korben: {
+    fillBg: 'bg-[#980cff]',
+    fillText: 'text-white',
+    outlineBorder: 'border-[#980cff]',
+    outlineText: 'text-[#980cff]'
+  }
+}
 
+const chipColor = computed(() => {
+  const absGConv = Math.abs(gConv)
+  if (absGConv > 0.9) {
+    return state.korben
+  } else if (absGConv >= 0.82) {
+    console.log('0.82')
+    return state.statist
+  } else if (absGConv >= 0.75) {
+    return state.olen
+  } else if (absGConv < 0.7) {
+    return state.rak
+  } else {
+    return state.rak
+  }
+})
+
+console.log(chipColor)
 // Ваш строковый массив
-const discountDataString = '0/0;2000/16000;5000/38000;9000/70000;17000/140000'
-
+const discountDataString = ref('')
+if (localStorage.getItem('promo')) {
+  discountDataString.value = localStorage.getItem('promo')
+}
 const price = props.smmPrice
 const smmBonus = props.smmBonus
 const rmBonus = props.rmBonus
 const sellPrice = props.sellPrice
 
-const discountPairs = discountDataString.split(';')
+const discountPairs = discountDataString.value.split(';')
 
 // Преобразование в объект
 const discountObject = discountPairs.reduce((acc, pair) => {
@@ -102,7 +149,11 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6)
         </k-table-row>
         <k-table-row>
           <k-table-cell>GConv</k-table-cell>
-          <k-table-cell class="text-right">{{ gConv }}</k-table-cell>
+          <k-table-cell class="text-right">
+            <k-chip class="m-0.5" :colors="chipColor">
+              {{ gConv }}
+            </k-chip>
+          </k-table-cell>
         </k-table-row>
         <k-table-row>
           <k-table-cell>LConv</k-table-cell>

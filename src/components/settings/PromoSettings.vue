@@ -5,10 +5,9 @@ import PromoSheet from './PromoSheet.vue'
 import { useRouter } from 'vue-router'
 const gvalue = ref(0)
 const pSheet = ref(null)
-
-const openSheet = (target) => {
+const curData = ref('')
+const openSheet = () => {
   pSheet.value.sheetOpened = true
-  pSheet.value.currentPromo = target
 }
 
 const router = useRouter()
@@ -18,18 +17,24 @@ function butHome() {
 
 const dData = [
   '0/0;2000/16000;5000/38000;9000/70000;17000/140000::УСЫ',
-  '0/0;2000/13000;5000/30000;6000/50000;14000/105000::ДИМА'
+  '0/0;2000/16000;4000/30000;6000/45000;8000/60000::ДИМА'
 ]
 
-// Set values in local storage
 watch(gvalue, (newValue) => {
   localStorage.setItem('gvalue', newValue.toString())
-  localStorage.setItem('promo', dData[newValue.toString()])
+  if (newValue !== -1) {
+    localStorage.setItem('promo', dData[newValue.toString()])
+    curData.value = dData[newValue.toString()]
+  } else {
+    // Set promo to "0/0;" when gvalue is -1
+    localStorage.setItem('promo', "0/0")
+    curData.value = "0/0::Промокода нет"
+
+  }
 })
 if (localStorage.getItem('gvalue')) {
   gvalue.value = parseInt(localStorage.getItem('gvalue'))
 }
-
 // Toggle off
 const toggleSwitch = (value) => {
   gvalue.value = gvalue.value === value ? -1 : value
@@ -61,10 +66,10 @@ const parsedData = dData.map(parseDiscountData)
     </k-list>
     <k-block strong inset class="grid grid-cols-2 gap-x-6">
       <k-button large rounded tonal @click="butHome()"> Назад </k-button>
-      <k-button large rounded tonal @click="() => openSheet(dData[gvalue].discountInfo)">
+      <k-button large rounded tonal @click="() => openSheet()">
         Детали промокода
       </k-button>
     </k-block>
-    <PromoSheet ref="pSheet" />
+    <PromoSheet ref="pSheet" :promo-data="curData"/>
   </k-page>
 </template>

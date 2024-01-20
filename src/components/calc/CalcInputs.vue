@@ -10,10 +10,10 @@ function butSettings() {
   router.push({ name: 'settings' })
 }
 
-const smmPrice = ref('145000')
-const smmBonus = ref('50000')
-const rmBonus = ref('70000')
-const sellPrice = ref('105000')
+const smmPrice = ref('')
+const smmBonus = ref('')
+const rmBonus = ref('')
+const sellPrice = ref('')
 
 const calcCard = ref(null)
 onMounted(() => {

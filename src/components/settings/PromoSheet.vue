@@ -17,21 +17,22 @@ import {
 } from 'konsta/vue'
 
 const sheetOpened = ref(false)
-const promoData = ref('')
-
-if (localStorage.getItem('promo')) {
-  promoData.value = localStorage.getItem('promo')
-}
-
 const discounts = computed(() => {
-  if (promoData.value) {
-    const [discountInfo] = promoData.value.split('::')
-    return discountInfo.split(';').map((pair) => {
+  if (props.promoData) {
+    const [discountInfo] = props.promoData.split('::')
+    const parsedDiscounts = discountInfo.split(';').map((pair) => {
       const [threshold, discount] = pair.split('/')
       return { threshold: threshold, discount: discount }
     })
+    return parsedDiscounts.slice(1);
   } else {
     return []
+  }
+})
+const props = defineProps({
+  promoData: {
+    type: String,
+    required: true
   }
 })
 defineExpose({

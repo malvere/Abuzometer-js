@@ -29,10 +29,10 @@ const openPopup = () => {
 
 <template>
   <k-page>
-    <k-block class="space-y-0 grid grid-cols-3">
+    <k-block class="space-y-4 grid grid-cols-1 ">
       <!-- <p>Тут будет инструкция. Или не тут</p> -->
       <div />
-      <k-button large tonal>Скрыть клавиатуру</k-button>
+      <k-button class="k-color-brand-red" large tonal>Скрыть клавиатуру</k-button>
       <div />
     </k-block>
     <k-block-title>Блок ввода</k-block-title>

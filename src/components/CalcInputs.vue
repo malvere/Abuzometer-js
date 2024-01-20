@@ -29,9 +29,11 @@ const openPopup = () => {
 
 <template>
   <k-page>
-    <k-block strong inset class="space-y-4" aria-readonly="true">
-      <p>Тут будет инструкция. Или не тут</p>
-      <k-button>Action</k-button>
+    <k-block class="space-y-0 grid grid-cols-3">
+      <!-- <p>Тут будет инструкция. Или не тут</p> -->
+      <div />
+      <k-button large tonal>Скрыть клавиатуру</k-button>
+      <div />
     </k-block>
     <k-block-title>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>

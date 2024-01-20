@@ -8,7 +8,7 @@ import {
   kTableCell,
   kTableRow,
   kBlock,
-  kChip
+  kBadge
 } from 'konsta/vue'
 import { ref, computed } from 'vue'
 
@@ -32,24 +32,28 @@ const props = defineProps({
 })
 const state = {
   rak: {
+    bg: 'bg-red-600',
     fillBg: 'bg-red-600',
     fillText: 'text-white',
     outlineBorder: 'border-red-500',
     outlineText: 'text-red-500'
   },
   olen: {
+    bg: 'bg-green-600',
     fillBg: 'bg-green-600',
     fillText: 'text-white',
     outlineBorder: 'border-green-500',
     outlineText: 'text-green-500'
   },
   statist: {
+    bg: 'bg-blue-500',
     fillBg: 'bg-blue-500',
     fillText: 'text-white',
     outlineBorder: 'border-blue-500',
     outlineText: 'text-blue-500'
   },
   korben: {
+    bg: 'bg-[#980cff]',
     fillBg: 'bg-[#980cff]',
     fillText: 'text-white',
     outlineBorder: 'border-[#980cff]',
@@ -150,17 +154,26 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6)
         <k-table-row>
           <k-table-cell>GConv</k-table-cell>
           <k-table-cell class="text-right">
-            <k-chip class="m-0.5" :colors="chipColor">
-              {{ gConv }}
-            </k-chip>
+            <k-badge :colors="chipColor">{{ gConv }}</k-badge>
           </k-table-cell>
         </k-table-row>
         <k-table-row>
           <k-table-cell>LConv</k-table-cell>
+
           <k-table-cell class="text-right">{{ lConv }}</k-table-cell>
         </k-table-row>
       </k-table-body>
     </k-table>
   </k-card>
+  <k-block-title :with-block="false">Инструкция</k-block-title>
+  <k-card>
+      Смотрим на два осноных параметра: GConv и LConv  <br/>
+      GConv: Глобальная конверисия. Учитывает баллы которые будут начисленны за данную покупку <br/>
+      Пример: <br/>
+      Купим мы товар за {{ buyPrice }} с учётом промокодов и списанки, спишем {{ rmBonus }} баллов и получится что мы эти {{ rmBonus }} обменяли на {{ profit }} деревянных рублей профита
+      (это кстати и есть LConv). Но из-за того что нам ещё сверху баллы упадут (в данном случае {{ recalcBonus }}), в коннечном итоге потеря баллов составит {{ deltaBonus }}. <br/>
+      По итогу мы {{ Math.abs(deltaBonus) }} меняем на {{ profit }} рублей, что и будет GConv (тут она {{ gConv }}) <br/>
+      Если всё равно непонятно - пишем мне или Ярику
+    </k-card>
   <!-- </k-block> -->
 </template>

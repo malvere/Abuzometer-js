@@ -27,9 +27,8 @@ watch(gvalue, (newValue) => {
     curData.value = dData[newValue.toString()]
   } else {
     // Set promo to "0/0;" when gvalue is -1
-    localStorage.setItem('promo', "0/0")
-    curData.value = "0/0::Промокода нет"
-
+    localStorage.setItem('promo', '0/0')
+    curData.value = '0/0::Промокода нет'
   }
 })
 if (localStorage.getItem('gvalue')) {
@@ -66,10 +65,8 @@ const parsedData = dData.map(parseDiscountData)
     </k-list>
     <k-block strong inset class="grid grid-cols-2 gap-x-6">
       <k-button large rounded tonal @click="butHome()"> Назад </k-button>
-      <k-button large rounded tonal @click="() => openSheet()">
-        Детали промокода
-      </k-button>
+      <k-button large rounded tonal @click="() => openSheet()"> Детали промокода </k-button>
     </k-block>
-    <PromoSheet ref="pSheet" :promo-data="curData"/>
+    <PromoSheet ref="pSheet" :promo-data="curData" />
   </k-page>
 </template>

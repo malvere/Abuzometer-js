@@ -1,5 +1,5 @@
 <script setup>
-import { kPage, kBlockTitle, kList, kListInput, kBlock, kButton } from 'konsta/vue'
+import { kPage, kBlockTitle, kList, kListInput, kBlock, kButton, kListItem } from 'konsta/vue'
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import DemoIcon from '@/components/icons/IconTooling.vue'
@@ -107,6 +107,27 @@ const openPopup = () => {
       :rm-bonus="rmBonus"
       :sell-price="sellPrice"
     />
+    <k-block class="grid grid-cols-3">
+      <div />
+      <k-list>
+        <k-list-item
+          :chevron-material="false"
+          title=""
+          subtitle="Abuzomer"
+          text="Q&A: @pablosupply"
+        >
+          <template #media>
+            <img
+              class="ios:rounded-lg material:rounded-full ios:w-10 material:w-10"
+              src="@/assets/logo.svg"
+              width="10"
+              alt="demo"
+            />
+          </template>
+        </k-list-item>
+      </k-list>
+      <div />
+    </k-block>
   </k-page>
 </template>
 

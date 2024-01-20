@@ -24,7 +24,7 @@ const discounts = computed(() => {
       const [threshold, discount] = pair.split('/')
       return { threshold: threshold, discount: discount }
     })
-    return parsedDiscounts.slice(1);
+    return parsedDiscounts.slice(1)
   } else {
     return []
   }

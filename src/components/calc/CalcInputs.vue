@@ -107,7 +107,7 @@ const openPopup = () => {
       :rm-bonus="rmBonus"
       :sell-price="sellPrice"
     />
-    <k-block class="grid grid-cols-3">
+    <k-block class="space-y-24">
       <div />
       <k-list>
         <k-list-item

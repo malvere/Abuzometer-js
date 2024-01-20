@@ -1,5 +1,5 @@
 <script setup>
-import CalcInputs from '@/components/CalcInputs.vue'
+import CalcInputs from '@/components/calc/CalcInputs.vue'
 import { kNavbar, kApp } from 'konsta/vue'
 </script>
 

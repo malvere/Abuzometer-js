@@ -1,9 +1,14 @@
 <script setup>
 import { kPage, kBlockTitle, kList, kListInput, kBlock, kButton } from 'konsta/vue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import DemoIcon from '@/components/icons/IconTooling.vue'
+import CalcCard from './CalcCard.vue'
 
-import DemoIcon from '../components/icons/IconTooling.vue'
-import CalcCard from './calc/CalcCard.vue'
+const router = useRouter()
+function butSettings() {
+  router.push({ name: 'settings' })
+}
 
 const smmPrice = ref('145000')
 const smmBonus = ref('50000')
@@ -29,11 +34,15 @@ const openPopup = () => {
 
 <template>
   <k-page>
-    <k-block class="space-y-4 grid grid-cols-1 ">
-      <!-- <p>Тут будет инструкция. Или не тут</p> -->
+    <!-- <k-block>
+      <p>Тут будет инструкция. Или не тут</p>
       <k-button class="k-color-brand-red" large tonal>Скрыть клавиатуру</k-button>
+    </k-block> -->
+    <k-block strong inset class="grid grid-cols-2 gap-x-6">
+      <k-button @click="butSettings" raised tonal rounded large>Настройки</k-button>
+      <k-button @click="openPopup" raised rounded large>Вычислить</k-button>
     </k-block>
-    <k-block-title>Блок ввода</k-block-title>
+    <k-block-title medium>Блок ввода</k-block-title>
     <k-list inset-ios strong-ios>
       <k-list-input
         label="Цена на СММ"
@@ -77,13 +86,6 @@ const openPopup = () => {
       </k-list-input>
     </k-list>
 
-    <div class="grid grid-cols-3">
-      <div />
-      <k-button @click="openPopup" raised rounded large>Вычислить</k-button>
-      <div />
-    </div>
-
-    <k-block-title>Ниже будут результаты расчётов...</k-block-title>
     <CalcCard
       ref="calcCard"
       :smm-price="smmPrice"

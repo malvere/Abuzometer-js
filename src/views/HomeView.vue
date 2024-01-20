@@ -1,6 +1,6 @@
 <script setup>
 // import TheWelcome from '../components/TheWelcome.vue'
-import CalcView from '@/components/CalcInputs.vue'
+import CalcView from '@/components/calc/CalcInputs.vue'
 import { kNavbar, kApp } from 'konsta/vue'
 </script>
 

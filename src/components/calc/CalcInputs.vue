@@ -1,6 +1,6 @@
 <script setup>
 import { kPage, kBlockTitle, kList, kListInput, kBlock, kButton } from 'konsta/vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import DemoIcon from '@/components/icons/IconTooling.vue'
 import CalcCard from './CalcCard.vue'
@@ -16,8 +16,17 @@ const rmBonus = ref('70000')
 const sellPrice = ref('105000')
 
 const calcCard = ref(null)
+onMounted(() => {
+  const storedData = localStorage.getItem('initData')
+  if (storedData) {
+    const parsedData = JSON.parse(storedData)
+    if (parsedData.smmPrice) smmPrice.value = parsedData.smmPrice
+    if (parsedData.smmBonus) smmBonus.value = parsedData.smmBonus
+    if (parsedData.rmBonus) rmBonus.value = parsedData.rmBonus
+    if (parsedData.sellPrice) sellPrice.value = parsedData.sellPrice
+  }
+})
 const openPopup = () => {
-  console.log(smmPrice.value)
   if (
     smmPrice.value !== '' &&
     smmBonus.value !== '' &&
@@ -25,6 +34,15 @@ const openPopup = () => {
     sellPrice.value !== ''
   ) {
     calcCard.value.popupOpened = true
+    localStorage.setItem(
+      'initData',
+      JSON.stringify({
+        smmPrice: smmPrice.value,
+        smmBonus: smmBonus.value,
+        rmBonus: rmBonus.value,
+        sellPrice: sellPrice.value
+      })
+    )
   } else {
     // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
     console.log('Пожалуйста, заполните все поля')
@@ -34,10 +52,6 @@ const openPopup = () => {
 
 <template>
   <k-page>
-    <!-- <k-block>
-      <p>Тут будет инструкция. Или не тут</p>
-      <k-button class="k-color-brand-red" large tonal>Скрыть клавиатуру</k-button>
-    </k-block> -->
     <k-block strong inset class="grid grid-cols-2 gap-x-6">
       <k-button @click="butSettings" raised tonal rounded large>Настройки</k-button>
       <k-button @click="openPopup" raised rounded large>Вычислить</k-button>

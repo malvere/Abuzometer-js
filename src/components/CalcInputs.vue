@@ -11,7 +11,6 @@ const rmBonus = ref('70000')
 const sellPrice = ref('105000')
 
 const calcCard = ref(null)
-const ri1 = ref(false)
 const openPopup = () => {
   console.log(smmPrice.value)
   if (
@@ -39,7 +38,9 @@ const openPopup = () => {
         :key="ri1"
         label="Цена на СММ"
         type="text"
+        onfocus="blur();"
         placeholder="Цена на СберМаркете"
+        inputmode="numeric"
         :value="smmPrice"
         @change="(e) => (smmPrice = e.target.value)"
       >

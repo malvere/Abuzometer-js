@@ -7,9 +7,21 @@ import CalcCard from './CalcCard.vue'
 
 const router = useRouter()
 function butSettings() {
+  saveInputs()
   router.push({ name: 'settings' })
 }
 
+function saveInputs() {
+  localStorage.setItem(
+      'initData',
+      JSON.stringify({
+        smmPrice: smmPrice.value,
+        smmBonus: smmBonus.value,
+        rmBonus: rmBonus.value,
+        sellPrice: sellPrice.value
+      })
+    )
+}
 const smmPrice = ref('')
 const smmBonus = ref('')
 const rmBonus = ref('')
@@ -34,15 +46,7 @@ const openPopup = () => {
     sellPrice.value !== ''
   ) {
     calcCard.value.popupOpened = true
-    localStorage.setItem(
-      'initData',
-      JSON.stringify({
-        smmPrice: smmPrice.value,
-        smmBonus: smmBonus.value,
-        rmBonus: rmBonus.value,
-        sellPrice: sellPrice.value
-      })
-    )
+    saveInputs()
   } else {
     // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
     console.log('Пожалуйста, заполните все поля')

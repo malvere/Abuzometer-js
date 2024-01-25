@@ -114,7 +114,7 @@ const openPopup = () => {
     />
     <k-block strong inset class="grid grid-cols-3 gap-x-6">
       <div/>
-      <k-button @click="() => WebApp.showPopup(`Hello world!`)" raised tonal rounded large>TG Test</k-button>
+      <k-button @click="() => WebApp.showAlert(`Hello world!`)" raised tonal rounded large>TG Test</k-button>
       <div/>
     </k-block>
     <k-block class="space-y-24">

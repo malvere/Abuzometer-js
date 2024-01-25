@@ -4,6 +4,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import DemoIcon from '@/components/icons/IconTooling.vue'
 import CalcCard from './CalcCard.vue'
+import WebApp from '@twa-dev/sdk'
 
 const router = useRouter()
 function butSettings() {
@@ -111,6 +112,11 @@ const openPopup = () => {
       :rm-bonus="rmBonus"
       :sell-price="sellPrice"
     />
+    <k-block strong inset class="grid grid-cols-3 gap-x-6">
+      <div/>
+      <k-button @click="() => WebApp.showPopup(`Hello world!`)" raised tonal rounded large>TG Test</k-button>
+      <div/>
+    </k-block>
     <k-block class="space-y-24">
       <div />
       <k-list>

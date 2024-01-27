@@ -216,7 +216,6 @@ export default {
   components: {
     kPage,
     kNavbar,
-    // kNavbarBackLink,
     kBlockTitle,
     kList,
     kListInput,

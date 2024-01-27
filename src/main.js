@@ -7,7 +7,7 @@ import router from './router'
 import WebApp from '@twa-dev/sdk'
 
 WebApp.ready()
-WebApp.expand()
+
 const app = createApp(App)
 
 app.use(router)

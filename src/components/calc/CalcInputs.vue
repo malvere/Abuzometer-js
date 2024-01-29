@@ -14,19 +14,22 @@ function butSettings() {
 
 function saveInputs() {
   localStorage.setItem(
-      'initData',
-      JSON.stringify({
-        smmPrice: smmPrice.value,
-        smmBonus: smmBonus.value,
-        rmBonus: rmBonus.value,
-        sellPrice: sellPrice.value
-      })
-    )
+    'initData',
+    JSON.stringify({
+      smmPrice: smmPrice.value,
+      smmBonus: smmBonus.value,
+      rmBonus: rmBonus.value,
+      sellPrice: sellPrice.value
+      // cashBack: cashBack.value
+    })
+  )
+  localStorage.setItem('cashBack', cashBack.value)
 }
 const smmPrice = ref('')
 const smmBonus = ref('')
 const rmBonus = ref('')
 const sellPrice = ref('')
+const cashBack = ref('')
 
 const calcCard = ref(null)
 onMounted(() => {
@@ -37,6 +40,11 @@ onMounted(() => {
     if (parsedData.smmBonus) smmBonus.value = parsedData.smmBonus
     if (parsedData.rmBonus) rmBonus.value = parsedData.rmBonus
     if (parsedData.sellPrice) sellPrice.value = parsedData.sellPrice
+    // if (parsedData.cashBack) cashBack.value = parsedData.cashBack
+  }
+  const cashBackData = localStorage.getItem('cashBack')
+  if (cashBackData) {
+    cashBack.value = cashBackData
   }
 })
 const openPopup = () => {
@@ -52,6 +60,10 @@ const openPopup = () => {
     // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
     console.log('Пожалуйста, заполните все поля')
   }
+}
+const checkTG = () => {
+  WebApp.showAlert(`<===3`)
+  WebApp.HapticFeedback()
 }
 </script>
 
@@ -103,6 +115,16 @@ const openPopup = () => {
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>
+      <k-list-input
+        label="Кешбек"
+        :value="cashBack"
+        type="text"
+        inputmode="numeric"
+        placeholder="Кешбек по карте банка"
+        @change="(e) => (cashBack = e.target.value)"
+      >
+        <template #media> <demo-icon /> </template>
+      </k-list-input>
     </k-list>
 
     <CalcCard
@@ -111,11 +133,14 @@ const openPopup = () => {
       :smm-bonus="smmBonus"
       :rm-bonus="rmBonus"
       :sell-price="sellPrice"
+      :cash-back="cashBack"
     />
     <k-block strong inset class="grid grid-cols-3 gap-x-6">
-      <div/>
-      <k-button @click="() => WebApp.showAlert(`Hi tg`)" raised tonal rounded large>TG Test</k-button>
-      <div/>
+      <div />
+      <k-button @click="() => checkTG()" raised tonal rounded large
+        >Test WebApp integrity</k-button
+      >
+      <div />
     </k-block>
     <k-block class="space-y-24">
       <div />

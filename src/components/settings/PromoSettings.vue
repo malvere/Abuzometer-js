@@ -1,6 +1,16 @@
 <script setup>
 import { ref, watch } from 'vue'
-import { kPage, kNavbar, kList, kListItem, kToggle, kButton, kBlock } from 'konsta/vue'
+import {
+  kPage,
+  kNavbar,
+  kList,
+  kListItem,
+  kToggle,
+  kButton,
+  kBlock,
+  kMenuList,
+  kMenuListItem
+} from 'konsta/vue'
 import PromoSheet from './PromoSheet.vue'
 import { useRouter } from 'vue-router'
 const gvalue = ref(0)
@@ -32,14 +42,14 @@ watch(gvalue, (newValue) => {
     curData.value = dData[newValue.toString()]
   } else {
     // Set promo to "0/0;" when gvalue is -1
-    localStorage.setItem('promo', '0/0')
-    curData.value = '0/0::Промокода нет'
+    localStorage.setItem('promo', '0/0;0/0::Промокод не выбран')
+    curData.value = '0/0;0/0::Промокод не выбран'
   }
 })
 
 if (localStorage.getItem('gvalue')) {
   gvalue.value = parseInt(localStorage.getItem('gvalue'))
-  curData.value = dData[parseInt(localStorage.getItem('gvalue'))]
+  curData.value = localStorage.getItem('promo')
 }
 // Toggle off
 const toggleSwitch = (value) => {
@@ -53,11 +63,18 @@ const parseDiscountData = (dataString) => {
   return { discountInfo, promocodeName }
 }
 const parsedData = dData.map(parseDiscountData)
+
+const cardData = ref(0)
+cardData.value = parseInt(localStorage.getItem('cashBack'))
+watch(cardData, (newValue) => {
+  localStorage.setItem('cashBack', newValue.toString())
+})
 </script>
 
 <template>
   <k-page>
     <k-navbar title="Настройки" />
+
     <k-list strong inset>
       <k-list-item
         label
@@ -70,6 +87,40 @@ const parsedData = dData.map(parseDiscountData)
         </template>
       </k-list-item>
     </k-list>
+<k-block>
+    <k-menu-list>
+      <k-menu-list-item
+        title="3%"
+        subtitle="МТС #скидкавезде и ИНГО"
+        :active="cardData === 3"
+        @click="() => (cardData = 3)"
+      >
+        <template #media>
+          <demo-icon />
+        </template>
+      </k-menu-list-item>
+      <k-menu-list-item
+        title="5%"
+        subtitle="Альфа-Банк Стандарт"
+        :active="cardData === 5"
+        @click="() => (cardData = 5)"
+      >
+        <template #media>
+          <demo-icon />
+        </template>
+      </k-menu-list-item>
+      <k-menu-list-item
+        title="7%"
+        subtitle="Альфа-Банк премиум"
+        :active="cardData === 7"
+        @click="() => (cardData = 7)"
+      >
+        <template #media>
+          <demo-icon />
+        </template>
+      </k-menu-list-item>
+    </k-menu-list>
+  </k-block>
     <k-block strong inset class="grid grid-cols-2 gap-x-6">
       <k-button large rounded tonal @click="butHome()"> Назад </k-button>
       <k-button large rounded tonal @click="() => openSheet()"> Детали промокода </k-button>

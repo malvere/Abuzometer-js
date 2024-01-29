@@ -20,6 +20,9 @@ const props = defineProps({
   sellPrice: {
     type: String,
     required: true
+  },
+  cashBack: {
+    type: String
   }
 })
 
@@ -32,10 +35,12 @@ const results_mode = ref(true)
 if (localStorage.getItem('promo')) {
   discountDataString.value = localStorage.getItem('promo')
 }
-const price = props.smmPrice
-const smmBonus = props.smmBonus
-const rmBonus = props.rmBonus
-const sellPrice = props.sellPrice
+
+const price = Number(props.smmPrice)
+const smmBonus = Number(props.smmBonus)
+const rmBonus = Number(props.rmBonus)
+const sellPrice = Number(props.sellPrice)
+const cashBack = Number(props.cashBack)
 
 const discountPairs = discountDataString.value.split(';')
 
@@ -63,15 +68,14 @@ const nearestDiscount = findNearestDiscount(price)
 
 const buyPrice = price - nearestDiscount - rmBonus
 const recalcBonus = Math.round((smmBonus / price) * buyPrice)
-const profit = sellPrice - buyPrice
+const profit = sellPrice - buyPrice + (cashBack / 100 * buyPrice)
 const deltaBonus = recalcBonus - rmBonus
 const gConv = profit / deltaBonus
-const lConv = profit / rmBonus 
+const lConv = profit / rmBonus
 
 if (profit < 0) {
   results_mode.value = false
 }
-
 </script>
 
 <template>

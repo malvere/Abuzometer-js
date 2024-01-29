@@ -63,7 +63,7 @@ const openPopup = () => {
 }
 const checkTG = () => {
   WebApp.showAlert(`<===3`)
-  WebApp.HapticFeedback()
+  WebApp.HapticFeedback.notificationOccurred('success')
 }
 </script>
 

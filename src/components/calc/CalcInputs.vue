@@ -138,7 +138,7 @@ const checkTG = () => {
     <k-block strong inset class="grid grid-cols-3 gap-x-6">
       <div />
       <k-button @click="() => checkTG()" raised tonal rounded large
-        >Test WebApp integrity</k-button
+        >TEST H</k-button
       >
       <div />
     </k-block>

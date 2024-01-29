@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { kPage, kPopup, kNavbar, kLink, kBlock } from 'konsta/vue'
 
-import CalcResult from './CalcResult.vue'
+import CalcResult from './CalcResultAlter.vue'
 
 defineProps({
   smmPrice: {

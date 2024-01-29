@@ -1,19 +1,8 @@
 <script setup>
-import {
-  kBlockTitle,
-  kCard,
-  kTable,
-  kTableHead,
-  kTableBody,
-  kTableCell,
-  kTableRow,
-  kBlock,
-  kBadge,
-  kToggle,
-  kListItem,
-  kList
-} from 'konsta/vue'
-import { ref, computed } from 'vue'
+import { kBlockTitle, kCard, kBlock, kToggle, kListItem, kList } from 'konsta/vue'
+import { ref } from 'vue'
+import WriteOff from './modes/WriteOff.vue'
+import AccumulateBonus from './modes/AccumulateBonus.vue'
 
 const props = defineProps({
   smmPrice: {
@@ -33,54 +22,7 @@ const props = defineProps({
     required: true
   }
 })
-const state = {
-  rak: {
-    bg: 'bg-red-600',
-    fillBg: 'bg-red-600',
-    fillText: 'text-white',
-    outlineBorder: 'border-red-500',
-    outlineText: 'text-red-500'
-  },
-  olen: {
-    bg: 'bg-green-600',
-    fillBg: 'bg-green-600',
-    fillText: 'text-white',
-    outlineBorder: 'border-green-500',
-    outlineText: 'text-green-500'
-  },
-  statist: {
-    bg: 'bg-blue-500',
-    fillBg: 'bg-blue-500',
-    fillText: 'text-white',
-    outlineBorder: 'border-blue-500',
-    outlineText: 'text-blue-500'
-  },
-  korben: {
-    bg: 'bg-[#980cff]',
-    fillBg: 'bg-[#980cff]',
-    fillText: 'text-white',
-    outlineBorder: 'border-[#980cff]',
-    outlineText: 'text-[#980cff]'
-  }
-}
 
-const chipColor = computed(() => {
-  const absGConv = Math.abs(gConv)
-  if (absGConv > 0.9) {
-    return state.korben
-  } else if (absGConv >= 0.82) {
-    console.log('0.82')
-    return state.statist
-  } else if (absGConv >= 0.75) {
-    return state.olen
-  } else if (absGConv < 0.7) {
-    return state.rak
-  } else {
-    return state.rak
-  }
-})
-
-console.log(chipColor)
 // Ваш строковый массив
 const discountDataString = ref('')
 
@@ -123,68 +65,50 @@ const buyPrice = price - nearestDiscount - rmBonus
 const recalcBonus = Math.round((smmBonus / price) * buyPrice)
 const profit = sellPrice - buyPrice
 const deltaBonus = recalcBonus - rmBonus
-const gConv = parseFloat(profit / deltaBonus).toFixed(6)
-const lConv = parseFloat(profit / rmBonus).toFixed(6)
+const gConv = profit / deltaBonus
+const lConv = profit / rmBonus 
 
-// console.log(buyPrice) // Выводит 2000
+if (profit < 0) {
+  results_mode.value = false
+}
+
 </script>
 
 <template>
   <k-block></k-block>
   <k-block-title>Результаты</k-block-title>
   <!-- <k-block> -->
-  <k-card class="block overflow-x-auto mt-10" :content-wrap="false">
-    <k-table>
-      <k-table-head>
-        <k-table-row header>
-          <k-table-cell header>Параметр</k-table-cell>
-          <k-table-cell header class="text-right">Значение</k-table-cell>
-        </k-table-row>
-      </k-table-head>
-      <k-table-body>
-        <k-table-row>
-          <k-table-cell>Цена покупки</k-table-cell>
-          <k-table-cell class="text-right">{{ buyPrice }}</k-table-cell>
-        </k-table-row>
-        <k-table-row>
-          <k-table-cell>Перерасчёт баллов</k-table-cell>
-          <k-table-cell class="text-right">{{ recalcBonus }}</k-table-cell>
-        </k-table-row>
-        <k-table-row>
-          <k-table-cell>Профит</k-table-cell>
-          <k-table-cell class="text-right">{{ profit }}</k-table-cell>
-        </k-table-row>
-        <k-table-row>
-          <k-table-cell>Δ Баллов</k-table-cell>
-          <k-table-cell class="text-right">{{ deltaBonus }}</k-table-cell>
-        </k-table-row>
-        <k-table-row>
-          <k-table-cell>GConv</k-table-cell>
-          <k-table-cell class="text-right">
-            <k-badge :colors="chipColor">{{ gConv }}</k-badge>
-          </k-table-cell>
-        </k-table-row>
-        <k-table-row>
-          <k-table-cell>LConv</k-table-cell>
-
-          <k-table-cell class="text-right">{{ lConv }}</k-table-cell>
-        </k-table-row>
-      </k-table-body>
-    </k-table>
+  <k-card v-if="results_mode" class="block overflow-x-auto mt-10" :content-wrap="false">
+    <WriteOff
+      :buy-price="buyPrice"
+      :recalc-bonus="recalcBonus"
+      :profit="profit"
+      :delta-bonus="deltaBonus"
+      :g-conv="gConv"
+      :l-conv="lConv"
+    />
+  </k-card>
+  <k-card v-else class="block overflow-x-auto mt-10" :content-wrap="false">
+    <AccumulateBonus
+      :buy-price="buyPrice"
+      :recalc-bonus="recalcBonus"
+      :profit="profit"
+      :delta-bonus="deltaBonus"
+    />
   </k-card>
   <!-- <k-card> -->
-    <k-list strong inset>
+  <k-list strong inset>
     <k-list-item label :title="results_mode === true ? `Списание` : `Начисление`">
-    <template #after>
-      <k-toggle
-        component="div"
-        class="-my-0"
-        :checked="results_mode"
-        @change="() => (results_mode = !results_mode)"
-      />
-    </template>
-  </k-list-item>
-</k-list>
+      <template #after>
+        <k-toggle
+          component="div"
+          class="-my-0"
+          :checked="results_mode"
+          @change="() => (results_mode = !results_mode)"
+        />
+      </template>
+    </k-list-item>
+  </k-list>
   <!-- </k-card> -->
   <k-block-title :with-block="false">Инструкция</k-block-title>
   <k-card>

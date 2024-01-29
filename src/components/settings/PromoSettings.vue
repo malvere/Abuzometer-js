@@ -8,6 +8,7 @@ const pSheet = ref(null)
 const curData = ref('')
 const openSheet = () => {
   pSheet.value.sheetOpened = true
+  console.log(curData.value)
 }
 
 const router = useRouter()
@@ -21,7 +22,7 @@ const dData = [
   '0/0;2000/14000;4000/30000;6000/40000;8000/60000::СМЕТАНКА',
   '0/0;3000/19000;5000/30000;10000/60000;15000/90000::ЭЛЯ',
   '0/0;2000/12000;4000/25000;6000/37000;8000/47000::МАМКУПИ',
-  '0/0;1000/6000;4000/25000;7000/43000;10000/60000::ДЫМОК',
+  '0/0;1000/6000;4000/25000;7000/43000;10000/60000::ДЫМОК'
 ]
 
 watch(gvalue, (newValue) => {
@@ -35,8 +36,10 @@ watch(gvalue, (newValue) => {
     curData.value = '0/0::Промокода нет'
   }
 })
+
 if (localStorage.getItem('gvalue')) {
   gvalue.value = parseInt(localStorage.getItem('gvalue'))
+  curData.value = dData[parseInt(localStorage.getItem('gvalue'))]
 }
 // Toggle off
 const toggleSwitch = (value) => {

@@ -9,6 +9,7 @@ import WebApp from '@twa-dev/sdk'
 const router = useRouter()
 function butSettings() {
   saveInputs()
+  WebApp.HapticFeedback.impactOccurred('light')
   router.push({ name: 'settings' })
 }
 
@@ -56,9 +57,12 @@ const openPopup = () => {
   ) {
     calcCard.value.popupOpened = true
     saveInputs()
+    WebApp.HapticFeedback.notificationOccurred('success')
   } else {
     // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
     console.log('Пожалуйста, заполните все поля')
+    WebApp.HapticFeedback.notificationOccurred('error')
+    WebApp.showAlert(`Заполните все поля! Поле кешбека можно оставить пустым.`)
   }
 }
 const checkTG = () => {

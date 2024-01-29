@@ -22,7 +22,7 @@ const props = defineProps({
     required: true
   },
   cashBack: {
-    type: String,
+    type: String
   }
 })
 
@@ -30,7 +30,6 @@ const popupOpened = ref(false)
 defineExpose({
   popupOpened
 })
-
 </script>
 
 <template>
@@ -48,7 +47,7 @@ defineExpose({
           :smm-bonus="props.smmBonus"
           :rm-bonus="props.rmBonus"
           :sell-price="props.sellPrice"
-        :cash-back="props.cashBack"
+          :cash-back="props.cashBack"
         />
       </k-block>
     </k-page>

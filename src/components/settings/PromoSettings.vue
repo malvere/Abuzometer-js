@@ -87,40 +87,40 @@ watch(cardData, (newValue) => {
         </template>
       </k-list-item>
     </k-list>
-<k-block>
-    <k-menu-list>
-      <k-menu-list-item
-        title="3%"
-        subtitle="МТС #скидкавезде и ИНГО"
-        :active="cardData === 3"
-        @click="() => (cardData = 3)"
-      >
-        <template #media>
-          <demo-icon />
-        </template>
-      </k-menu-list-item>
-      <k-menu-list-item
-        title="5%"
-        subtitle="Альфа-Банк Стандарт"
-        :active="cardData === 5"
-        @click="() => (cardData = 5)"
-      >
-        <template #media>
-          <demo-icon />
-        </template>
-      </k-menu-list-item>
-      <k-menu-list-item
-        title="7%"
-        subtitle="Альфа-Банк премиум"
-        :active="cardData === 7"
-        @click="() => (cardData = 7)"
-      >
-        <template #media>
-          <demo-icon />
-        </template>
-      </k-menu-list-item>
-    </k-menu-list>
-  </k-block>
+    <k-block>
+      <k-menu-list>
+        <k-menu-list-item
+          title="3%"
+          subtitle="МТС #скидкавезде и ИНГО"
+          :active="cardData === 3"
+          @click="() => (cardData = 3)"
+        >
+          <template #media>
+            <demo-icon />
+          </template>
+        </k-menu-list-item>
+        <k-menu-list-item
+          title="5%"
+          subtitle="Альфа-Банк Стандарт"
+          :active="cardData === 5"
+          @click="() => (cardData = 5)"
+        >
+          <template #media>
+            <demo-icon />
+          </template>
+        </k-menu-list-item>
+        <k-menu-list-item
+          title="7%"
+          subtitle="Альфа-Банк премиум"
+          :active="cardData === 7"
+          @click="() => (cardData = 7)"
+        >
+          <template #media>
+            <demo-icon />
+          </template>
+        </k-menu-list-item>
+      </k-menu-list>
+    </k-block>
     <k-block strong inset class="grid grid-cols-2 gap-x-6">
       <k-button large rounded tonal @click="butHome()"> Назад </k-button>
       <k-button large rounded tonal @click="() => openSheet()"> Детали промокода </k-button>

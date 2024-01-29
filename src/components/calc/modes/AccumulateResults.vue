@@ -1,7 +1,7 @@
 <script setup>
 import { kTable, kTableHead, kTableBody, kTableCell, kTableRow, kBadge } from 'konsta/vue'
 import { chipColor } from '../funcs/aConvChip'
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const props = defineProps({
   buyPrice: {
@@ -19,20 +19,20 @@ const props = defineProps({
   deltaBonus: {
     type: Number,
     required: true
-  },
-//   gConv: {
-//     type: Number,
-//     required: true
-//   },
-//   lConv: {
-//     type: Number,
-//     required: true
-//   }
+  }
+  //   gConv: {
+  //     type: Number,
+  //     required: true
+  //   },
+  //   lConv: {
+  //     type: Number,
+  //     required: true
+  //   }
 })
 
 const aConv = props.deltaBonus / props.profit
-const cC = computed(()=>{
-    return chipColor(aConv)
+const cC = computed(() => {
+  return chipColor(aConv)
 })
 console.log(cC)
 </script>

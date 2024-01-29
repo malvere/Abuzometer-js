@@ -173,18 +173,18 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6)
     </k-table>
   </k-card>
   <!-- <k-card> -->
-    <k-list strong inset>
+  <k-list strong inset>
     <k-list-item label :title="results_mode === true ? `Списание` : `Начисление`">
-    <template #after>
-      <k-toggle
-        component="div"
-        class="-my-0"
-        :checked="results_mode"
-        @change="() => (results_mode = !results_mode)"
-      />
-    </template>
-  </k-list-item>
-</k-list>
+      <template #after>
+        <k-toggle
+          component="div"
+          class="-my-0"
+          :checked="results_mode"
+          @change="() => (results_mode = !results_mode)"
+        />
+      </template>
+    </k-list-item>
+  </k-list>
   <!-- </k-card> -->
   <k-block-title :with-block="false">Инструкция</k-block-title>
   <k-card>

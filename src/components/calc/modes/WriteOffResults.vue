@@ -1,7 +1,7 @@
 <script setup>
 import { kTable, kTableHead, kTableBody, kTableCell, kTableRow, kBadge } from 'konsta/vue'
 import { chipColor } from '../funcs/gConvChip'
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const props = defineProps({
   buyPrice: {
@@ -30,8 +30,8 @@ const props = defineProps({
   }
 })
 const gConv = props.profit < 0 ? 0 : props.gConv
-const cC = computed(()=>{
-    return chipColor(gConv)
+const cC = computed(() => {
+  return chipColor(gConv)
 })
 console.log(cC)
 </script>

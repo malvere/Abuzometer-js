@@ -17,9 +17,9 @@ onMounted(async () => {
     const response = await axios.post(apiEndpoints.key, {
       user_id: uid.toString()
     })
-    if (!response.ok) {
-      throw new Error(`Failed with ${response.status}`)
-    }
+    // if (!response.ok) {
+    //   throw new Error(`Failed with ${response.status}`)
+    // }
     state.value.hasResponse = true
     state.value.key = response.data.key
     // response.json().then((data) => (state.value.key = data.key))

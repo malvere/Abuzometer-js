@@ -21,7 +21,7 @@ onMounted(async () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ user_id: uid })
+      body: JSON.stringify({ user_id: String(uid) })
     })
     if (!response.ok) {
       throw new Error(`Failed with ${response.status}`)

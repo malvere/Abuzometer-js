@@ -4,28 +4,33 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import DemoIcon from '@/components/icons/IconTooling.vue'
 import CalcCard from './CalcCard.vue'
+import WebApp from '@twa-dev/sdk'
 
 const router = useRouter()
 function butSettings() {
   saveInputs()
+  WebApp.HapticFeedback.impactOccurred('light')
   router.push({ name: 'settings' })
 }
 
 function saveInputs() {
   localStorage.setItem(
-      'initData',
-      JSON.stringify({
-        smmPrice: smmPrice.value,
-        smmBonus: smmBonus.value,
-        rmBonus: rmBonus.value,
-        sellPrice: sellPrice.value
-      })
-    )
+    'initData',
+    JSON.stringify({
+      smmPrice: smmPrice.value,
+      smmBonus: smmBonus.value,
+      rmBonus: rmBonus.value,
+      sellPrice: sellPrice.value
+      // cashBack: cashBack.value
+    })
+  )
+  localStorage.setItem('cashBack', cashBack.value)
 }
 const smmPrice = ref('')
 const smmBonus = ref('')
 const rmBonus = ref('')
 const sellPrice = ref('')
+const cashBack = ref('')
 
 const calcCard = ref(null)
 onMounted(() => {
@@ -36,6 +41,11 @@ onMounted(() => {
     if (parsedData.smmBonus) smmBonus.value = parsedData.smmBonus
     if (parsedData.rmBonus) rmBonus.value = parsedData.rmBonus
     if (parsedData.sellPrice) sellPrice.value = parsedData.sellPrice
+    // if (parsedData.cashBack) cashBack.value = parsedData.cashBack
+  }
+  const cashBackData = localStorage.getItem('cashBack')
+  if (cashBackData) {
+    cashBack.value = cashBackData
   }
 })
 const openPopup = () => {
@@ -47,10 +57,17 @@ const openPopup = () => {
   ) {
     calcCard.value.popupOpened = true
     saveInputs()
+    WebApp.HapticFeedback.notificationOccurred('success')
   } else {
     // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
     console.log('Пожалуйста, заполните все поля')
+    WebApp.HapticFeedback.notificationOccurred('error')
+    WebApp.showAlert(`Заполните все поля! Поле кешбека можно оставить пустым.`)
   }
+}
+const checkTG = () => {
+  WebApp.showAlert('Your id:' + WebApp.initDataUnsafe.user.id)
+  WebApp.HapticFeedback.notificationOccurred('success')
 }
 </script>
 
@@ -102,6 +119,16 @@ const openPopup = () => {
       >
         <template #media> <demo-icon /> </template>
       </k-list-input>
+      <k-list-input
+        label="Кешбек"
+        :value="cashBack"
+        type="text"
+        inputmode="numeric"
+        placeholder="Кешбек по карте банка"
+        @change="(e) => (cashBack = e.target.value)"
+      >
+        <template #media> <demo-icon /> </template>
+      </k-list-input>
     </k-list>
 
     <CalcCard
@@ -110,7 +137,13 @@ const openPopup = () => {
       :smm-bonus="smmBonus"
       :rm-bonus="rmBonus"
       :sell-price="sellPrice"
+      :cash-back="cashBack"
     />
+    <k-block strong inset class="grid grid-cols-3 gap-x-6">
+      <div />
+      <k-button @click="checkTG" raised tonal rounded large>TEST H</k-button>
+      <div />
+    </k-block>
     <k-block class="space-y-24">
       <div />
       <k-list>

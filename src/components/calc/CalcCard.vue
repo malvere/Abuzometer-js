@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import { kPage, kPopup, kNavbar, kLink, kBlock } from 'konsta/vue'
 
-import CalcResult from './CalcResult.vue'
+import CalcResult from './CalcResultAlter.vue'
 
-defineProps({
+const props = defineProps({
   smmPrice: {
     type: String,
     required: true
@@ -20,6 +20,9 @@ defineProps({
   sellPrice: {
     type: String,
     required: true
+  },
+  cashBack: {
+    type: String
   }
 })
 
@@ -40,10 +43,11 @@ defineExpose({
       <k-block class="space-y-4 hairline-transparent">
         <CalcResult
           v-if="popupOpened"
-          :smm-price="smmPrice"
-          :smm-bonus="smmBonus"
-          :rm-bonus="rmBonus"
-          :sell-price="sellPrice"
+          :smm-price="props.smmPrice"
+          :smm-bonus="props.smmBonus"
+          :rm-bonus="props.rmBonus"
+          :sell-price="props.sellPrice"
+          :cash-back="props.cashBack"
         />
       </k-block>
     </k-page>

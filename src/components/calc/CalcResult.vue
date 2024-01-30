@@ -8,7 +8,10 @@ import {
   kTableCell,
   kTableRow,
   kBlock,
-  kBadge
+  kBadge,
+  kToggle,
+  kListItem,
+  kList
 } from 'konsta/vue'
 import { ref, computed } from 'vue'
 
@@ -80,6 +83,10 @@ const chipColor = computed(() => {
 console.log(chipColor)
 // Ваш строковый массив
 const discountDataString = ref('')
+
+// Results mode. True means points are being written off
+const results_mode = ref(true)
+
 if (localStorage.getItem('promo')) {
   discountDataString.value = localStorage.getItem('promo')
 }
@@ -165,15 +172,32 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6)
       </k-table-body>
     </k-table>
   </k-card>
+  <!-- <k-card> -->
+  <k-list strong inset>
+    <k-list-item label :title="results_mode === true ? `Списание` : `Начисление`">
+      <template #after>
+        <k-toggle
+          component="div"
+          class="-my-0"
+          :checked="results_mode"
+          @change="() => (results_mode = !results_mode)"
+        />
+      </template>
+    </k-list-item>
+  </k-list>
+  <!-- </k-card> -->
   <k-block-title :with-block="false">Инструкция</k-block-title>
   <k-card>
-      Смотрим на два осноных параметра: GConv и LConv  <br/>
-      GConv: Глобальная конверисия. Учитывает баллы которые будут начисленны за данную покупку <br/>
-      Пример: <br/>
-      Купим мы товар за {{ buyPrice }} с учётом промокодов и списанки, спишем {{ rmBonus }} баллов и получится что мы эти {{ rmBonus }} обменяли на {{ profit }} деревянных рублей профита
-      (это кстати и есть LConv). Но из-за того что нам ещё сверху баллы упадут (в данном случае {{ recalcBonus }}), в коннечном итоге потеря баллов составит {{ deltaBonus }}. <br/>
-      По итогу мы {{ Math.abs(deltaBonus) }} меняем на {{ profit }} рублей, что и будет GConv (тут она {{ gConv }}) <br/>
-      Если всё равно непонятно - пишем мне или Ярику
-    </k-card>
+    Смотрим на два осноных параметра: GConv и LConv <br />
+    GConv: Глобальная конверисия. Учитывает баллы которые будут начисленны за данную покупку <br />
+    Пример: <br />
+    Купим мы товар за {{ buyPrice }} с учётом промокодов и списанки, спишем {{ rmBonus }} баллов и
+    получится что мы эти {{ rmBonus }} обменяли на {{ profit }} деревянных рублей профита (это
+    кстати и есть LConv). Но из-за того что нам ещё сверху баллы упадут (в данном случае
+    {{ recalcBonus }}), в коннечном итоге потеря баллов составит {{ deltaBonus }}. <br />
+    По итогу мы {{ Math.abs(deltaBonus) }} меняем на {{ profit }} рублей, что и будет GConv (тут она
+    {{ gConv }}) <br />
+    Если всё равно непонятно - пишем мне или Ярику
+  </k-card>
   <!-- </k-block> -->
 </template>

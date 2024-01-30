@@ -12,6 +12,7 @@ const state = ref({
 })
 onMounted(async () => {
   const uid = WebApp.initDataUnsafe.user.id
+  console.log(uid)
   try {
     const response = await fetch(apiEndpoints.key, {
       method: 'POST',

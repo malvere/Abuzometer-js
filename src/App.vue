@@ -7,22 +7,20 @@ import WebApp from '@twa-dev/sdk'
 import { onMounted, ref } from 'vue'
 import { apiEndpoints } from '@/api'
 import axios from 'axios'
+
 const state = ref({
   hasResponse: false,
   key: null
 })
+
 onMounted(async () => {
   const uid = WebApp.initDataUnsafe.user.id
   try {
     const response = await axios.post(apiEndpoints.key, {
       user_id: uid.toString()
     })
-    // if (!response.ok) {
-    //   throw new Error(`Failed with ${response.status}`)
-    // }
     state.value.hasResponse = true
     state.value.key = response.data.key
-    // response.json().then((data) => (state.value.key = data.key))
     console.log(response.data)
   } catch (error) {
     console.error('Error fetching HMAC key: ', error)

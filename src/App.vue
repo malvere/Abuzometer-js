@@ -13,6 +13,7 @@ const state = ref({
 onMounted(async () => {
   const uid = WebApp.initDataUnsafe.user.id
   console.log(uid)
+  console.log(state.value)
   try {
     const response = await fetch(apiEndpoints.key, {
       method: 'POST',
@@ -25,7 +26,7 @@ onMounted(async () => {
       throw new Error(`Failed with ${response.status}`)
     }
     response.json().then((data) => (state.value.key = data.key))
-    console.log(state.value.key)
+    console.log(state.value)
   } catch (error) {
     console.error('Error fetching HMAC key: ', error)
   }

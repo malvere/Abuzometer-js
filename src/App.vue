@@ -12,6 +12,7 @@ const state = ref({
 })
 onMounted(async () => {
   const uid = WebApp.initDataUnsafe.user.id
+  // const uid = "1380381516"
   console.log(uid)
   console.log(state.value)
   try {
@@ -25,6 +26,7 @@ onMounted(async () => {
     if (!response.ok) {
       throw new Error(`Failed with ${response.status}`)
     }
+    state.value.hasResponse = true
     response.json().then((data) => (state.value.key = data.key))
     console.log(state.value)
   } catch (error) {

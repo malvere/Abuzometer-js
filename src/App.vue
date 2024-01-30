@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 import AuthProvider from './providers/AuthProvider.vue'
 import UnauthorizedView from './views/UnauthorizedView.vue'
 
-const hmackey = '35df66f89c4336512a805a656125d757842a2d01a1b341d7ab91a702cc5aa236'
+const hmackey = 'fe9155b917ca3cdcf46d125795064948a502b61be4eb6c364430ef43f91a0f93'
 </script>
 
 <template>

@@ -5,6 +5,7 @@ import WriteOff from './modes/WriteOffResults.vue'
 import AccumulateBonus from './modes/AccumulateResults.vue'
 import AccumulateCard from './modes/AccumulateCard.vue'
 import WriteOffCard from './modes/WriteOffCard.vue'
+import WebApp from '@twa-dev/sdk'
 
 const props = defineProps({
   smmPrice: {
@@ -30,9 +31,6 @@ const props = defineProps({
 
 // Ваш строковый массив
 const discountDataString = ref('')
-
-// Results mode. True means points are being written off
-const results_mode = ref(true)
 
 if (localStorage.getItem('promo')) {
   discountDataString.value = localStorage.getItem('promo')
@@ -75,8 +73,15 @@ const deltaBonus = recalcBonus - rmBonus
 const gConv = profit / deltaBonus
 const lConv = profit / rmBonus
 
+// Results mode. True means points are being written off
+const results_mode = ref(true)
 if (profit < 0) {
   results_mode.value = false
+}
+const changeMode = () => {
+  WebApp.HapticFeedback.impactOccurred('light')
+  results_mode.value = !results_mode.value
+
 }
 </script>
 
@@ -110,7 +115,7 @@ if (profit < 0) {
           component="div"
           class="-my-0"
           :checked="results_mode"
-          @change="() => (results_mode = !results_mode)"
+          @change="changeMode"
         />
       </template>
     </k-list-item>

@@ -66,7 +66,7 @@ const openPopup = () => {
   }
 }
 const checkTG = () => {
-  WebApp.showAlert(WebApp.initDataUnsafe.user.id)
+  WebApp.showAlert('Your id:' + WebApp.initDataUnsafe.user.id)
   WebApp.HapticFeedback.notificationOccurred('success')
 }
 </script>

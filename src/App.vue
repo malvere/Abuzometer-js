@@ -5,7 +5,7 @@ import AuthProvider from './providers/AuthProvider.vue'
 import UnauthorizedView from './views/UnauthorizedView.vue'
 import WebApp from '@twa-dev/sdk'
 import { onMounted, ref } from 'vue'
-import {apiEndpoints} from '@/api'
+import { apiEndpoints } from '@/api'
 const state = ref({
   hasResponse: false,
   key: null
@@ -17,14 +17,15 @@ onMounted(async () => {
     const response = await fetch(apiEndpoints.key, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ user_id: uid }),
-    });
+      body: JSON.stringify({ user_id: uid })
+    })
     if (!response.ok) {
       throw new Error(`Failed with ${response.status}`)
     }
-    response.json().then((data) => state.value.key = data.key)
+    response.json().then((data) => (state.value.key = data.key))
+    console.log(state.value.key)
   } catch (error) {
     console.error('Error fetching HMAC key: ', error)
   }
@@ -41,8 +42,6 @@ onMounted(async () => {
         </template>
       </AuthProvider>
     </k-page>
-    <k-page v-else>
-      Loading...
-    </k-page>
+    <k-page v-else> Loading... </k-page>
   </k-app>
 </template>

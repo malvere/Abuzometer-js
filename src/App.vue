@@ -6,6 +6,7 @@ import UnauthorizedView from './views/UnauthorizedView.vue'
 import WebApp from '@twa-dev/sdk'
 import { onMounted, ref } from 'vue'
 import { apiEndpoints } from '@/api'
+import axios from 'axios'
 const state = ref({
   hasResponse: false,
   key: null
@@ -13,19 +14,16 @@ const state = ref({
 onMounted(async () => {
   const uid = WebApp.initDataUnsafe.user.id
   try {
-    const response = await fetch(apiEndpoints.key, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ user_id: uid.toString() })
+    const response = await axios.post(apiEndpoints.key, {
+      user_id: uid.toString()
     })
     if (!response.ok) {
       throw new Error(`Failed with ${response.status}`)
     }
     state.value.hasResponse = true
-    response.json().then((data) => (state.value.key = data.key))
-    console.log(response.json())
+    state.value.key = response.data.key
+    // response.json().then((data) => (state.value.key = data.key))
+    console.log(response.data)
   } catch (error) {
     console.error('Error fetching HMAC key: ', error)
   }

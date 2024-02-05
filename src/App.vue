@@ -63,7 +63,7 @@ const authUser = async () => {
 
 <template>
   <k-app theme="ios">
-    <k-page v-if="state.hasResponse">
+    <k-page v-if="!!state.key">
       <AuthProvider :hex_hmac_signature="state.key">
         <RouterView />
         <template #unauthorized v-if="state.key">

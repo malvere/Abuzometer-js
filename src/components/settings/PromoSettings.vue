@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import {
   kPage,
   kNavbar,
@@ -13,6 +13,8 @@ import {
 } from 'konsta/vue'
 import PromoSheet from './PromoSheet.vue'
 import { useRouter } from 'vue-router'
+import { getPromos } from './getJson.js'
+
 const gvalue = ref(0)
 const pSheet = ref(null)
 const curData = ref('')
@@ -26,35 +28,36 @@ function butHome() {
   router.push({ name: 'home' })
 }
 
-const dData = [
-  // '0/0;2000/16000;5000/38000;9000/70000;17000/140000::УСЫ',
-  // '0/0;2000/16000;4000/30000;6000/45000;8000/60000::ДИМА',
-  // '0/0;2000/14000;4000/30000;6000/40000;8000/60000::СМЕТАНКА',
-  // '0/0;3000/19000;5000/30000;10000/60000;15000/90000::ЭЛЯ',
-  // '0/0;2000/12000;4000/25000;6000/37000;8000/47000::МАМКУПИ',
-  // '0/0;1000/6000;4000/25000;7000/43000;10000/60000::ДЫМОК',
-  '0/0;1000/6000;5000/30000;10000/55000;20000/110000::ДАША',
-  '0/0;2000/18000;5000/45000;9000/82000;12000/110000::ЖАЛКОЧТОЛИ',
-  '0/0;1000/11000;2000/18000;3000/27000;4000/40000::ЛАДНОКУПЛЮ',
-  '0/0;1500/5000;3000/8000;5000/13000;7000/25000::1fepn',
-  '0/0;2000/10000;5000/25000;7000/30000;15000/75000::5fepn',
-  '0/0;10000/70000;15000/90000;20000/140000;30000/180000::6fepn',
-  '0/0;2000/10000;4000/20000;6000/30000;8000/40000::КИНЗА/УКРОП',
-  // '0/0;2000/11000;5000/40000;9000/60000;12000/90000::ИКРА',
-  // '0/0;1000/8000;2000/17000;3000/25000;5000/40000::СЕЛЬДЬ',
-]
 
 watch(gvalue, (newValue) => {
   localStorage.setItem('gvalue', newValue.toString())
   if (newValue !== -1) {
-    localStorage.setItem('promo', dData[newValue.toString()])
-    curData.value = dData[newValue.toString()]
+    const pcode = parsedData.value[newValue]
+    localStorage.setItem('promo', pcode.discountInfo + '::' + pcode.promocodeName)
+    console.log(pcode.discountInfo + '::' + pcode.promocodeName)
+    curData.value = pcode.discountInfo + '::' + pcode.promocodeName
   } else {
     // Set promo to "0/0;" when gvalue is -1
     localStorage.setItem('promo', '0/0;0/0::Промокод не выбран')
     curData.value = '0/0;0/0::Промокод не выбран'
   }
 })
+
+const jdata = ref()
+onMounted(async () => {
+  jdata.value = await getPromos('promokod')
+  console.log(jdata.value)
+})
+const parsedData = ref([])
+watch(jdata, (newValue) => {
+  // Parse the data only when jdata is updated
+  parsedData.value = newValue.map((promo) => {
+    const { promo: discountInfo, promo_name: promocodeName } = promo
+    return parseDiscountData(`${discountInfo}::${promocodeName}`)
+  })
+  console.log(parsedData)
+})
+
 
 if (localStorage.getItem('gvalue')) {
   gvalue.value = parseInt(localStorage.getItem('gvalue'))
@@ -71,7 +74,7 @@ const parseDiscountData = (dataString) => {
 
   return { discountInfo, promocodeName }
 }
-const parsedData = dData.map(parseDiscountData)
+// const parsedData = dData.map(parseDiscountData)
 
 const cardData = ref(0)
 cardData.value = parseInt(localStorage.getItem('cashBack'))

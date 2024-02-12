@@ -81,7 +81,6 @@ if (profit < 0) {
 const changeMode = () => {
   WebApp.HapticFeedback.impactOccurred('light')
   results_mode.value = !results_mode.value
-
 }
 </script>
 
@@ -111,12 +110,7 @@ const changeMode = () => {
   <k-list strong inset>
     <k-list-item label :title="results_mode === true ? `Списание` : `Начисление`">
       <template #after>
-        <k-toggle
-          component="div"
-          class="-my-0"
-          :checked="results_mode"
-          @change="changeMode"
-        />
+        <k-toggle component="div" class="-my-0" :checked="results_mode" @change="changeMode" />
       </template>
     </k-list-item>
   </k-list>

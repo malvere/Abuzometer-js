@@ -28,7 +28,6 @@ function butHome() {
   router.push({ name: 'home' })
 }
 
-
 watch(gvalue, (newValue) => {
   localStorage.setItem('gvalue', newValue.toString())
   if (newValue !== -1) {
@@ -57,7 +56,6 @@ watch(jdata, (newValue) => {
   })
   console.log(parsedData)
 })
-
 
 if (localStorage.getItem('gvalue')) {
   gvalue.value = parseInt(localStorage.getItem('gvalue'))

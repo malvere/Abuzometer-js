@@ -38,13 +38,11 @@ const authUser = async () => {
       }
     }
     const response = await axios.get(apiEndpoints.user, conf)
-    console.log('User Authenticated:', response.data);
+    console.log('User Authenticated:', response.data)
   } catch (error) {
     console.error('Error creating user: ', error)
   }
-
 }
-
 </script>
 
 <template>
@@ -57,17 +55,17 @@ const authUser = async () => {
         </template>
       </AuthProvider>
     </k-page>
-    <k-page v-else> 
+    <k-page v-else>
       <k-block-title>Отказ в доступе</k-block-title>
       <k-list inset strong>
         <k-list-input
-        label="Инвайт"
-        type="text"
-        placeholder="Введите инвайт код"
-        :value="inviteCode"
-        @change="(e) => (inviteCode = e.target.value)"
-      />
-      <k-list-button class="k-color-brand-red" @click="authUser()"> Авиторизация </k-list-button>
+          label="Инвайт"
+          type="text"
+          placeholder="Введите инвайт код"
+          :value="inviteCode"
+          @change="(e) => (inviteCode = e.target.value)"
+        />
+        <k-list-button class="k-color-brand-red" @click="authUser()"> Авиторизация </k-list-button>
       </k-list>
     </k-page>
   </k-app>

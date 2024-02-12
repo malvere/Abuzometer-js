@@ -131,6 +131,16 @@ watch(cardData, (newValue) => {
             <demo-icon />
           </template>
         </k-menu-list-item>
+        <k-menu-list-item
+          title="0%"
+          subtitle="Не учитывать кешбек"
+          :active="cardData === 0"
+          @click="() => (cardData = 0)"
+        >
+          <template #media>
+            <demo-icon />
+          </template>
+        </k-menu-list-item>
       </k-menu-list>
     </k-block>
     <k-block strong inset class="grid grid-cols-2 gap-x-6">

@@ -42,7 +42,9 @@ const rmBonus = Number(props.rmBonus)
 const sellPrice = Number(props.sellPrice)
 const cashBack = Number(props.cashBack)
 
-const discountPairs = discountDataString.value.split(';')
+let discountIndex = discountDataString.value.indexOf("::");
+let discountResult = discountDataString.value.substring(0, discountIndex);
+const discountPairs = discountResult.split(';')
 
 // Преобразование в объект
 const discountObject = discountPairs.reduce((acc, pair) => {
@@ -51,20 +53,8 @@ const discountObject = discountPairs.reduce((acc, pair) => {
   return acc
 }, {})
 
-// Находит ближайшую сумму (не более price), для которой задана скидка
-function findNearestDiscount() {
-  let nearestAmount = 0
-  for (const key in discountObject) {
-    const currentAmount = parseInt(key, 10)
-    if (currentAmount <= price && currentAmount > nearestAmount) {
-      nearestAmount = currentAmount
-    }
-  }
-  return discountObject[nearestAmount]
-}
-
 // Получаем ближайшую скидку для целевой суммы
-const nearestDiscount = findNearestDiscount(price)
+const nearestDiscount = Object.entries(discountObject).reduce((p, [, s]) => s <= price ? s : p)
 
 const buyPrice = price - nearestDiscount - rmBonus
 const recalcBonus = Math.round((smmBonus / price) * buyPrice)

@@ -118,7 +118,6 @@ function findNearestDiscount() {
 
 // Получаем ближайшую скидку для целевой суммы
 const nearestDiscount = findNearestDiscount(price)
-
 const buyPrice = price - nearestDiscount - rmBonus
 const recalcBonus = Math.round((smmBonus / price) * buyPrice)
 const profit = sellPrice - buyPrice

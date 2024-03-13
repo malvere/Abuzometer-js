@@ -1,5 +1,7 @@
-//funcs.js
-// import { computed } from 'vue'
+/*
+Colors and corresponding coefficients.
+{Inspired by Olenemer}
+*/
 
 const state = {
   rak: {

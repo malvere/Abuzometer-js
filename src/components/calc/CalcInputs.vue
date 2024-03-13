@@ -7,12 +7,15 @@ import CalcCard from './CalcCard.vue'
 import WebApp from '@twa-dev/sdk'
 
 const router = useRouter()
+
+// Opens settings tab and saves user inputs
 function butSettings() {
   saveInputs()
   WebApp.HapticFeedback.impactOccurred('light')
   router.push({ name: 'settings' })
 }
 
+// Stores user inputs in LocalStorage
 function saveInputs() {
   localStorage.setItem(
     'initData',
@@ -21,7 +24,6 @@ function saveInputs() {
       smmBonus: smmBonus.value,
       rmBonus: rmBonus.value,
       sellPrice: sellPrice.value
-      // cashBack: cashBack.value
     })
   )
   localStorage.setItem('cashBack', cashBack.value)
@@ -32,6 +34,7 @@ const rmBonus = ref('')
 const sellPrice = ref('')
 const cashBack = ref('')
 
+
 const calcCard = ref(null)
 onMounted(() => {
   const storedData = localStorage.getItem('initData')
@@ -41,13 +44,14 @@ onMounted(() => {
     if (parsedData.smmBonus) smmBonus.value = parsedData.smmBonus
     if (parsedData.rmBonus) rmBonus.value = parsedData.rmBonus
     if (parsedData.sellPrice) sellPrice.value = parsedData.sellPrice
-    // if (parsedData.cashBack) cashBack.value = parsedData.cashBack
   }
   const cashBackData = localStorage.getItem('cashBack')
   if (cashBackData) {
     cashBack.value = cashBackData
   }
 })
+
+// Opens popup with calculated results
 const openPopup = () => {
   if (
     smmPrice.value !== '' &&
@@ -59,12 +63,14 @@ const openPopup = () => {
     saveInputs()
     WebApp.HapticFeedback.notificationOccurred('success')
   } else {
-    // Возможно, вы хотите добавить обработку ситуации, когда не все поля заполнены
+    // Handling situation where not all fields are filled
     console.log('Пожалуйста, заполните все поля')
     WebApp.HapticFeedback.notificationOccurred('error')
     WebApp.showAlert(`Заполните все поля! Поле кешбека можно оставить пустым.`)
   }
 }
+
+// Just a test button. Can be safely removed.
 const checkTG = () => {
   WebApp.showAlert('Your id:' + WebApp.initDataUnsafe.user.id)
   WebApp.HapticFeedback.notificationOccurred('success')

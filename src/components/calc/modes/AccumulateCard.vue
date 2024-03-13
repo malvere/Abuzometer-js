@@ -1,3 +1,7 @@
+/*
+Shows details for bonus Accumulation
+*/
+
 <script setup>
 import { kCard } from 'konsta/vue'
 const props = defineProps({
@@ -7,7 +11,6 @@ const props = defineProps({
   sellPrice: Number,
   profit: Number
 })
-// const aConv = props.deltaBonus / props.profit
 </script>
 <template>
   <k-card>

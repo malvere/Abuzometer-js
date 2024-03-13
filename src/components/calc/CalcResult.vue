@@ -1,3 +1,9 @@
+/*
+The code bellow is currently deprecated.
+Will be removed in future commits.
+*/
+
+
 <script setup>
 import {
   kBlockTitle,
@@ -64,6 +70,7 @@ const state = {
   }
 }
 
+// Color of a chip. Based on Olenemer from WOT xD
 const chipColor = computed(() => {
   const absGConv = Math.abs(gConv)
   if (absGConv > 0.9) {
@@ -81,7 +88,7 @@ const chipColor = computed(() => {
 })
 
 console.log(chipColor)
-// Ваш строковый массив
+// Your string array. Fromat: 0/0;1000/2000;...1500/3000::promo_name
 const discountDataString = ref('')
 
 // Results mode. True means points are being written off
@@ -97,14 +104,12 @@ const sellPrice = props.sellPrice
 
 const discountPairs = discountDataString.value.split(';')
 
-// Преобразование в объект
 const discountObject = discountPairs.reduce((acc, pair) => {
   const [discount, amount] = pair.split('/').map(Number)
   acc[amount] = discount
   return acc
 }, {})
 
-// Находит ближайшую сумму (не более price), для которой задана скидка
 function findNearestDiscount() {
   let nearestAmount = 0
   for (const key in discountObject) {
@@ -116,7 +121,6 @@ function findNearestDiscount() {
   return discountObject[nearestAmount]
 }
 
-// Получаем ближайшую скидку для целевой суммы
 const nearestDiscount = findNearestDiscount(price)
 const buyPrice = price - nearestDiscount - rmBonus
 const recalcBonus = Math.round((smmBonus / price) * buyPrice)
@@ -125,13 +129,11 @@ const deltaBonus = recalcBonus - rmBonus
 const gConv = parseFloat(profit / deltaBonus).toFixed(6)
 const lConv = parseFloat(profit / rmBonus).toFixed(6)
 
-// console.log(buyPrice) // Выводит 2000
 </script>
 
 <template>
   <k-block></k-block>
   <k-block-title>Результаты</k-block-title>
-  <!-- <k-block> -->
   <k-card class="block overflow-x-auto mt-10" :content-wrap="false">
     <k-table>
       <k-table-head>
@@ -165,13 +167,11 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6)
         </k-table-row>
         <k-table-row>
           <k-table-cell>LConv</k-table-cell>
-
           <k-table-cell class="text-right">{{ lConv }}</k-table-cell>
         </k-table-row>
       </k-table-body>
     </k-table>
   </k-card>
-  <!-- <k-card> -->
   <k-list strong inset>
     <k-list-item label :title="results_mode === true ? `Списание` : `Начисление`">
       <template #after>
@@ -184,7 +184,6 @@ const lConv = parseFloat(profit / rmBonus).toFixed(6)
       </template>
     </k-list-item>
   </k-list>
-  <!-- </k-card> -->
   <k-block-title :with-block="false">Инструкция</k-block-title>
   <k-card>
     Смотрим на два осноных параметра: GConv и LConv <br />

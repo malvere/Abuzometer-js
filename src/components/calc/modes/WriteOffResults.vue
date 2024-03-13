@@ -1,3 +1,7 @@
+/*
+Outputs results for writing bonuses off.
+*/
+
 <script setup>
 import { kTable, kTableHead, kTableBody, kTableCell, kTableRow, kBadge } from 'konsta/vue'
 import { chipColor } from '../funcs/gConvChip'

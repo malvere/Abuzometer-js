@@ -1,3 +1,8 @@
+/*
+Shows results for bonus Accumulation.
+Coefficinets can be tuned in ../funcs/aConvChip
+*/
+
 <script setup>
 import { kTable, kTableHead, kTableBody, kTableCell, kTableRow, kBadge } from 'konsta/vue'
 import { chipColor } from '../funcs/aConvChip'
@@ -20,14 +25,6 @@ const props = defineProps({
     type: Number,
     required: true
   }
-  //   gConv: {
-  //     type: Number,
-  //     required: true
-  //   },
-  //   lConv: {
-  //     type: Number,
-  //     required: true
-  //   }
 })
 
 const aConv = props.deltaBonus / props.profit

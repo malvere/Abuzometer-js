@@ -8,28 +8,28 @@ import WriteOffCard from './modes/WriteOffCard.vue'
 import WebApp from '@twa-dev/sdk'
 
 const props = defineProps({
-  smmPrice: {
+  smmPrice: { // Megamarket price (without promocodes)
     type: String,
     required: true
   },
-  smmBonus: {
+  smmBonus: { // Bonuses as seen in good card (without promos)
     type: String,
     required: true
   },
-  rmBonus: {
+  rmBonus: { // How many bonuses user is willing to write off
     type: String,
     required: true
   },
-  sellPrice: {
+  sellPrice: { // Desired sell price
     type: String,
     required: true
   },
-  cashBack: {
+  cashBack: { // Cashbacks (If payment method differs from Sberbank)
     type: String
   }
 })
 
-// Ваш строковый массив
+// Your string array. Fromat: 0/0;1000/2000;...1500/3000::promo_name
 const discountDataString = ref('')
 
 if (localStorage.getItem('promo')) {
@@ -46,16 +46,17 @@ let discountIndex = discountDataString.value.indexOf("::");
 let discountResult = discountDataString.value.substring(0, discountIndex);
 const discountPairs = discountResult.split(';')
 
-// Преобразование в объект
+// Conversion to object
 const discountObject = discountPairs.reduce((acc, pair) => {
   const [discount, amount] = pair.split('/').map(Number)
   acc[amount] = discount
   return acc
 }, {})
 
-// Получаем ближайшую скидку для целевой суммы
+// Retrieve nearest discount (must be <= price)
 const nearestDiscount = Object.entries(discountObject).reduce((p, [, s]) => s <= price ? s : p)
 
+// Calculations for objectve function
 const buyPrice = price - nearestDiscount - rmBonus
 const recalcBonus = Math.round((smmBonus / price) * buyPrice)
 const profit = sellPrice - buyPrice + (cashBack / 100) * buyPrice
@@ -63,21 +64,21 @@ const deltaBonus = recalcBonus - rmBonus
 const gConv = profit / deltaBonus
 const lConv = profit / rmBonus
 
-// Results mode. True means points are being written off
+// Results mode.
+// Write-off mode (true) and Accumulation mode (false)
 const results_mode = ref(true)
 if (profit < 0) {
   results_mode.value = false
 }
 const changeMode = () => {
-  WebApp.HapticFeedback.impactOccurred('light')
-  results_mode.value = !results_mode.value
+  WebApp.HapticFeedback.impactOccurred('light') // Haptic feedback via Telegram miniApp SDK
+  results_mode.value = !results_mode.value // User can manually change the mode
 }
 </script>
 
 <template>
   <k-block></k-block>
   <k-block-title>Результаты</k-block-title>
-  <!-- <k-block> -->
   <k-card v-if="results_mode" class="block overflow-x-auto mt-10" :content-wrap="false">
     <WriteOff
       :buy-price="buyPrice"
@@ -96,7 +97,6 @@ const changeMode = () => {
       :delta-bonus="deltaBonus"
     />
   </k-card>
-  <!-- <k-card> -->
   <k-list strong inset>
     <k-list-item label :title="results_mode === true ? `Списание` : `Начисление`">
       <template #after>
@@ -104,7 +104,6 @@ const changeMode = () => {
       </template>
     </k-list-item>
   </k-list>
-  <!-- </k-card> -->
   <k-block-title :with-block="false">Инструкция</k-block-title>
   <WriteOffCard
     v-if="results_mode"

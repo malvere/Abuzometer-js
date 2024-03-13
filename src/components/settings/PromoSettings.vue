@@ -1,3 +1,7 @@
+/*
+Shows promocodes and Cashback presets
+*/
+
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 import {
@@ -15,9 +19,9 @@ import PromoSheet from './PromoSheet.vue'
 import { useRouter } from 'vue-router'
 import { getPromos } from './getJson.js'
 
-const gvalue = ref(0)
-const pSheet = ref(null)
-const curData = ref('')
+const gvalue = ref(0) // Global conversion
+const pSheet = ref(null) // Promo sheet
+const curData = ref('') // Current promo data
 const openSheet = () => {
   pSheet.value.sheetOpened = true
   console.log(curData.value)
@@ -44,8 +48,9 @@ watch(gvalue, (newValue) => {
 
 const jdata = ref()
 onMounted(async () => {
-  jdata.value = await getPromos('promokod')
-  console.log(jdata.value)
+  // Requests available promos from backend with Authorization header 'promokod'
+  jdata.value = await getPromos('promokod') 
+  // console.log(jdata.value)
 })
 const parsedData = ref([])
 watch(jdata, (newValue) => {
@@ -72,7 +77,6 @@ const parseDiscountData = (dataString) => {
 
   return { discountInfo, promocodeName }
 }
-// const parsedData = dData.map(parseDiscountData)
 
 const cardData = ref(0)
 cardData.value = parseInt(localStorage.getItem('cashBack'))

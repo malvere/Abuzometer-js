@@ -1,5 +1,7 @@
-//funcs.js
-// import { computed } from 'vue'
+/*
+Accumulation chip colors and coefficients.
+Change accoriding to your desires
+*/
 
 const state = {
   rak: {

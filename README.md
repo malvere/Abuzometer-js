@@ -1,14 +1,18 @@
-# tg-front
+# Abuzomer-js
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a MegaMarket Calculator with Telegram intergration! A tool made to help your shopping even more profitable!
 
-## Recommended IDE Setup
+![Main screen](.github/screenshots/1.png)
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Determine bonus obtainig efficiency.
+- Select promocodes and desired cashback. Presets are in 'Settings' tab.
+- Calculate effectiveness of the bonus write-offs.
+- Calculate bonus conversions.
+- Limit access to calculator via invite-codes or to memebres of telegram chat/group/channel
+- Requests promocodes from backend server. 
+- Stores user inputs and settings in LocalStorage
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
@@ -33,4 +37,35 @@ npm run build
 ```sh
 npm run lint
 ```
-# Abuzometer-js
+## Settings Screen
+![Settings](.github/screenshots/2.png)
+
+Promocodes are requested from backend server. Source will be provided in nearest future.
+
+You can toggle any promocode you want and apply cashback if you're making paymanets using something except Sberbank. 
+
+If Sberbank card or SberPya is used, leave filed as `0%`.
+
+Promo detailes available under corresponding button.
+
+![PromoDetails](.github/screenshots/3.png)
+
+## Accumulation screen
+
+Calculator has 2 modes: `Accumulation` and `Write-off`
+
+In accumulation mode it calculates how efficient bonus gaining will be. The more bonuses and the less expenses - the better. Efficiency (e.g. `conversions`) is also higligthed with color based on WoT Olenemer.
+![Accumulation](.github/screenshots/4.png)
+
+## Write-Off screen
+
+2-nd mode, bonus `write-off`. Calculates how efficient you will convert bonuses into cash. GConv is shows Global Conversion. 
+
+If you do partial conversion (which is the way-to-go usually), take GConv into consideration
+### Example GConv usage:
+
+You buy something for `147.000` and recieve `51.500` bonuses. Youd decide to write off `50.000` bonuses and at the end of the day you you sell this unit for `112.500` v-bucks. Your profit is `35.500` you loose `50.000` bonuses but you also get back `26.976`, so overall delta is `23024` bonuses
+![WriteOff](.github/screenshots/5.png)
+
+Have a good shoppping!
+

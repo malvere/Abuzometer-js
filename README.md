@@ -4,6 +4,8 @@ This is a SberMegaMarket Calculator with Telegram intergration! A tool made to h
 
 [RU-Docs](/.github/docs/README-RU.md)
 
+[Backend Source](https://github.com/malvere/Megacalc-backend)
+
 ![Main screen](.github/screenshots/1.png)
 ## Features
 

@@ -39,7 +39,7 @@ npm run lint
 ```
 ## Настройки
 
-[<img src=".github/screenshots/2.png" width="250"/>](/.github/screenshots/2.png)
+[<img src="../screenshots/2.png" width="250"/>](/.github/screenshots/2.png)
 
 Промокоды запрашиваются с backend-сервера. Исходники появятся в ближайшем будущем
 
@@ -51,7 +51,7 @@ You can toggle any promocode you want and apply cashback if you're making payman
 
 Детали выбранного промокода также доступны с экрана настроек
 
-[<img src=".github/screenshots/3.png" width="250"/>](/.github/screenshots/3.png)
+[<img src="../screenshots/3.png" width="250"/>](/.github/screenshots/3.png)
 
 ## Режим начисления
 
@@ -60,7 +60,7 @@ You can toggle any promocode you want and apply cashback if you're making payman
 В режиме начисления высчитаывается эффективность начисления бонусов. Чем больше бонусов и чем меньше затраты после продажи - тем выше эффективность. 
 Эффективность (она же `конверсия`) подсвечена цветом.
 
-[<img src=".github/screenshots/4.png" width="250"/>](/.github/screenshots/4.png)
+[<img src="../screenshots/4.png" width="250"/>](/.github/screenshots/4.png)
 
 ## Режим списания
 
@@ -71,7 +71,7 @@ You can toggle any promocode you want and apply cashback if you're making payman
 
 Покупаете что-то за `147.000` и получаете `51.500` бонусов. Решаете списать `50.000` с последующей продажей товара за `112.500` условных единиц. Прибыль в валюте составит `35.500`, а потери бонусов при этом `50.000`, но в то же время за покупку вернётся `26.976` бонусов, итоговая дельта составит `23024` бонусов.
 
-[<img src=".github/screenshots/5.png" width="250"/>](/.github/screenshots/5.png)
+[<img src="../screenshots/5.png" width="250"/>](/.github/screenshots/5.png)
 
 Удачных покупок!
 

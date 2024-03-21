@@ -1,6 +1,8 @@
 # Abuzometer-js
 
-This is a MegaMarket Calculator with Telegram intergration! A tool made to help your shopping even more profitable!
+This is a SberMegaMarket Calculator with Telegram intergration! A tool made to help your shopping even more profitable!
+
+[RU-Docs](/.github/docs/README-RU.md)
 
 ![Main screen](.github/screenshots/1.png)
 ## Features
@@ -48,7 +50,7 @@ If Sberbank card or SberPya is used, leave filed as `0%`.
 
 Promo detailes available under corresponding button.
 
-[<img src=".github/screenshots/3.png" width="250"/>](.github/screenshots/2.png)
+[<img src=".github/screenshots/3.png" width="250"/>](.github/screenshots/3.png)
 
 ## Accumulation screen
 
@@ -56,7 +58,7 @@ Calculator has 2 modes: `Accumulation` and `Write-off`
 
 In accumulation mode it calculates how efficient bonus gaining will be. The more bonuses and the less expenses - the better. Efficiency (e.g. `conversions`) is also higligthed with color based on WoT Olenemer.
 
-[<img src=".github/screenshots/4.png" width="250"/>](.github/screenshots/2.png)
+[<img src=".github/screenshots/4.png" width="250"/>](.github/screenshots/4.png)
 
 ## Write-Off screen
 
@@ -67,7 +69,7 @@ If you do partial conversion (which is the way-to-go usually), take GConv into c
 
 You buy something for `147.000` and recieve `51.500` bonuses. Youd decide to write off `50.000` bonuses and at the end of the day you you sell this unit for `112.500` v-bucks. Your profit is `35.500` you loose `50.000` bonuses but you also get back `26.976`, so overall delta is `23024` bonuses
 
-[<img src=".github/screenshots/5.png" width="250"/>](.github/screenshots/2.png)
+[<img src=".github/screenshots/5.png" width="250"/>](.github/screenshots/5.png)
 
 Have a good shoppping!
 

@@ -1,6 +1,4 @@
-/*
-Shows details for bonus Accumulation
-*/
+/* Shows details for bonus Accumulation */
 
 <script setup>
 import { kCard } from 'konsta/vue'

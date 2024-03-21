@@ -8,23 +8,28 @@ import WriteOffCard from './modes/WriteOffCard.vue'
 import WebApp from '@twa-dev/sdk'
 
 const props = defineProps({
-  smmPrice: { // Megamarket price (without promocodes)
+  smmPrice: {
+    // Megamarket price (without promocodes)
     type: String,
     required: true
   },
-  smmBonus: { // Bonuses as seen in good card (without promos)
+  smmBonus: {
+    // Bonuses as seen in good card (without promos)
     type: String,
     required: true
   },
-  rmBonus: { // How many bonuses user is willing to write off
+  rmBonus: {
+    // How many bonuses user is willing to write off
     type: String,
     required: true
   },
-  sellPrice: { // Desired sell price
+  sellPrice: {
+    // Desired sell price
     type: String,
     required: true
   },
-  cashBack: { // Cashbacks (If payment method differs from Sberbank)
+  cashBack: {
+    // Cashbacks (If payment method differs from Sberbank)
     type: String
   }
 })
@@ -42,8 +47,8 @@ const rmBonus = Number(props.rmBonus)
 const sellPrice = Number(props.sellPrice)
 const cashBack = Number(props.cashBack)
 
-let discountIndex = discountDataString.value.indexOf("::");
-let discountResult = discountDataString.value.substring(0, discountIndex);
+let discountIndex = discountDataString.value.indexOf('::')
+let discountResult = discountDataString.value.substring(0, discountIndex)
 const discountPairs = discountResult.split(';')
 
 // Conversion to object
@@ -54,7 +59,7 @@ const discountObject = discountPairs.reduce((acc, pair) => {
 }, {})
 
 // Retrieve nearest discount (must be <= price)
-const nearestDiscount = Object.entries(discountObject).reduce((p, [, s]) => s <= price ? s : p)
+const nearestDiscount = Object.entries(discountObject).reduce((p, [, s]) => (s <= price ? s : p))
 
 // Calculations for objectve function
 const buyPrice = price - nearestDiscount - rmBonus

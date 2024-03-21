@@ -1,8 +1,4 @@
-/*
-This modes handles situation where user wants to write 
-his bonuses off.
-(Convert them to cash)
-*/
+/* This modes handles situation where user wants to write his bonuses off. (Convert them to cash) */
 
 <script setup>
 import { kCard } from 'konsta/vue'

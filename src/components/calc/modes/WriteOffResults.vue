@@ -1,6 +1,4 @@
-/*
-Outputs results for writing bonuses off.
-*/
+/* Outputs results for writing bonuses off. */
 
 <script setup>
 import { kTable, kTableHead, kTableBody, kTableCell, kTableRow, kBadge } from 'konsta/vue'

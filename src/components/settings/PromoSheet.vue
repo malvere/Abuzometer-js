@@ -1,6 +1,4 @@
-/*
-Shows promo detailes
-*/
+/* Shows promo detailes */
 
 <script setup>
 import { ref, computed } from 'vue'

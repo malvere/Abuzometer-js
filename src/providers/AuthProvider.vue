@@ -1,6 +1,4 @@
-/*
-Checks if user uses valid telegram client
-*/
+/* Checks if user uses valid telegram client */
 
 <script setup>
 import { ref, provide, onMounted } from 'vue'

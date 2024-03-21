@@ -4,25 +4,29 @@ import { kPage, kPopup, kNavbar, kLink, kBlock } from 'konsta/vue'
 
 import CalcResult from './CalcResultAlter.vue'
 
-
 const props = defineProps({
-  smmPrice: { // Megamarket price (without promocodes)
+  smmPrice: {
+    // Megamarket price (without promocodes)
     type: String,
     required: true
   },
-  smmBonus: { // Bonuses as seen in good card (without promos)
+  smmBonus: {
+    // Bonuses as seen in good card (without promos)
     type: String,
     required: true
   },
-  rmBonus: { // How many bonuses user is willing to write off
+  rmBonus: {
+    // How many bonuses user is willing to write off
     type: String,
     required: true
   },
-  sellPrice: { // Desired sell price
+  sellPrice: {
+    // Desired sell price
     type: String,
     required: true
   },
-  cashBack: { // Cashbacks (If payment method differs from Sberbank)
+  cashBack: {
+    // Cashbacks (If payment method differs from Sberbank)
     type: String
   }
 })

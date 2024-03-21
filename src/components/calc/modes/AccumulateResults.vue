@@ -1,7 +1,4 @@
-/*
-Shows results for bonus Accumulation.
-Coefficinets can be tuned in ../funcs/aConvChip
-*/
+/* Shows results for bonus Accumulation. Coefficinets can be tuned in ../funcs/aConvChip */
 
 <script setup>
 import { kTable, kTableHead, kTableBody, kTableCell, kTableRow, kBadge } from 'konsta/vue'

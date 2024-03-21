@@ -1,6 +1,4 @@
-/*
-Shows promocodes and Cashback presets
-*/
+/* Shows promocodes and Cashback presets */
 
 <script setup>
 import { onMounted, ref, watch } from 'vue'
@@ -49,7 +47,7 @@ watch(gvalue, (newValue) => {
 const jdata = ref()
 onMounted(async () => {
   // Requests available promos from backend with Authorization header 'promokod'
-  jdata.value = await getPromos('promokod') 
+  jdata.value = await getPromos('promokod')
   // console.log(jdata.value)
 })
 const parsedData = ref([])

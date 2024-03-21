@@ -34,7 +34,6 @@ const rmBonus = ref('')
 const sellPrice = ref('')
 const cashBack = ref('')
 
-
 const calcCard = ref(null)
 onMounted(() => {
   const storedData = localStorage.getItem('initData')

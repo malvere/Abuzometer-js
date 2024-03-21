@@ -1,8 +1,4 @@
-/*
-The code bellow is currently deprecated.
-Will be removed in future commits.
-*/
-
+/* The code bellow is currently deprecated. Will be removed in future commits. */
 
 <script setup>
 import {
@@ -128,7 +124,6 @@ const profit = sellPrice - buyPrice
 const deltaBonus = recalcBonus - rmBonus
 const gConv = parseFloat(profit / deltaBonus).toFixed(6)
 const lConv = parseFloat(profit / rmBonus).toFixed(6)
-
 </script>
 
 <template>

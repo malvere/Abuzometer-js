@@ -1,4 +1,8 @@
 # Abuzometer-js
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
+![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
+
+
 
 This is a SberMegaMarket Calculator with Telegram intergration! A tool made to help your shopping even more profitable!
 
